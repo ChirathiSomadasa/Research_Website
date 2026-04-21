@@ -1,208 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Voice Bridge – AI Platform for Speech & Language Disorders</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Bridge – AI Platform for Speech & Language Disorders</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-<!-- DevIcons CDN — real tech brand icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+  <!-- DevIcons CDN — real tech brand icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
 
-<style>
-/* ─────────────────────────────────────────
+  <style>
+    /* ─────────────────────────────────────────
    ROOT
 ───────────────────────────────────────── */
-:root{
-  --green:#4CAF50; --green-dark:#388E3C; --green-light:#81C784; --green-soft:#E8F5E9;
-  --pink:#E91E63;  --pink-soft:#FCE4EC;
-  --yellow:#FFC107;--yellow-soft:#FFF8E1; --yellow-dark:#F57F17;
-  --white:#ffffff; --light:#F5F5F5; --off:#FAFAFA;
-  --text:#212121;  --mid:#424242;   --muted:#757575; --border:#E0E0E0;
-  --nav-h:70px;
-  --sh-sm:0 2px 8px rgba(0,0,0,.07);
-  --sh-md:0 6px 24px rgba(0,0,0,.10);
-  --sh-lg:0 18px 50px rgba(0,0,0,.14);
-  --r:12px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+    :root {
+      --green: #4CAF50;
+      --green-dark: #388E3C;
+      --green-light: #81C784;
+      --green-soft: #E8F5E9;
+      --pink: #E91E63;
+      --pink-soft: #FCE4EC;
+      --yellow: #FFC107;
+      --yellow-soft: #FFF8E1;
+      --yellow-dark: #F57F17;
+      --white: #ffffff;
+      --light: #F5F5F5;
+      --off: #FAFAFA;
+      --text: #212121;
+      --mid: #424242;
+      --muted: #757575;
+      --border: #E0E0E0;
+      --nav-h: 70px;
+      --sh-sm: 0 2px 8px rgba(0, 0, 0, .07);
+      --sh-md: 0 6px 24px rgba(0, 0, 0, .10);
+      --sh-lg: 0 18px 50px rgba(0, 0, 0, .14);
+      --r: 12px;
+    }
 
-/* ─────────────────────────────────────────
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden
+    }
+
+    /* ─────────────────────────────────────────
    NAV
 ───────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  height:var(--nav-h);background:rgba(255,255,255,.97);
-  backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;
-}
-.nav-logo{display:flex;align-items:center;gap:.65rem;text-decoration:none}
-/* Logo image — see IMAGE comment in HTML */
-.nav-logo-img{height:42px;width:42px;object-fit:contain;border-radius:8px;display:block}
-.nav-logo-svg{flex-shrink:0}/* fallback while no image */
-.nav-logo-text{font-family:'Merriweather',serif;font-size:1.15rem;font-weight:700;color:var(--text)}
-.nav-logo-text span{color:var(--green)}
-.nav-links{display:flex;gap:.05rem;list-style:none;align-items:center}
-.nav-links>li>a{text-decoration:none;color:var(--mid);font-weight:500;font-size:.82rem;padding:.42rem .82rem;border-radius:6px;transition:all .18s;display:flex;align-items:center;gap:.18rem}
-.nav-links>li>a:hover,.nav-links>li>a.active{background:var(--green-soft);color:var(--green-dark)}
-.nav-item{position:relative}
-.nav-item:hover .dropdown{display:block}
-.dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#fff;border-radius:10px;box-shadow:var(--sh-md);min-width:205px;padding:.45rem;border:1px solid var(--border);z-index:200}
-.dropdown a{display:flex;align-items:center;gap:.5rem;padding:.42rem .85rem;font-size:.79rem;border-radius:7px;color:var(--mid);text-decoration:none;transition:all .15s}
-.dropdown a:hover{background:var(--green-soft);color:var(--green-dark)}
-.dropdown a .material-icons-round{font-size:15px;color:var(--green)}
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      background: rgba(255, 255, 255, .97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+    }
 
-/* ─────────────────────────────────────────
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      text-decoration: none
+    }
+
+    /* Logo image — see IMAGE comment in HTML */
+    .nav-logo-img {
+      height: 42px;
+      width: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block
+    }
+
+    .nav-logo-svg {
+      flex-shrink: 0
+    }
+
+    /* fallback while no image */
+    .nav-logo-text {
+      font-family: 'Merriweather', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .nav-logo-text span {
+      color: var(--green)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .05rem;
+      list-style: none;
+      align-items: center
+    }
+
+    .nav-links>li>a {
+      text-decoration: none;
+      color: var(--mid);
+      font-weight: 500;
+      font-size: .82rem;
+      padding: .42rem .82rem;
+      border-radius: 6px;
+      transition: all .18s;
+      display: flex;
+      align-items: center;
+      gap: .18rem
+    }
+
+    .nav-links>li>a:hover,
+    .nav-links>li>a.active {
+      background: var(--green-soft);
+      color: var(--green-dark)
+    }
+
+    .nav-item {
+      position: relative
+    }
+
+    .nav-item:hover .dropdown {
+      display: block
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: var(--sh-md);
+      min-width: 205px;
+      padding: .45rem;
+      border: 1px solid var(--border);
+      z-index: 200
+    }
+
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .42rem .85rem;
+      font-size: .79rem;
+      border-radius: 7px;
+      color: var(--mid);
+      text-decoration: none;
+      transition: all .15s
+    }
+
+    .dropdown a:hover {
+      background: var(--green-soft);
+      color: var(--green-dark)
+    }
+
+    .dropdown a .material-icons-round {
+      font-size: 15px;
+      color: var(--green)
+    }
+
+    /* ─────────────────────────────────────────
    HERO
 ───────────────────────────────────────── */
-#home{min-height:100vh;padding-top:var(--nav-h);position:relative;overflow:hidden;display:flex;align-items:center}
+    #home {
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center
+    }
 
-/* IMAGE: hero-bg
+    /* IMAGE: hero-bg
    HOW TO CHANGE: replace the URL inside url('...') with your local path:
    url('images/hero-bg.jpg')
    The photo should show a speech therapist communicating with a child.
    Current placeholder: free Unsplash photo (therapist + child).
 */
-.hero-bg{
-  position:absolute;inset:0;
-  background-image:url('images/hero-bg.jpg');
-  background-size:cover;background-position:center 35%;
-}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(110deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.58) 50%,rgba(0,0,0,.18) 100%);
-}
-.hero-inner{
-  max-width:1200px;margin:0 auto;padding:5rem 2.5rem;
-  display:grid;grid-template-columns:1fr 270px;gap:5rem;
-  align-items:center;position:relative;z-index:2;width:100%;
-}
-.hero-text{color:#fff}
-.hero-overline{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(76,175,80,.22);border:1px solid rgba(76,175,80,.45);
-  color:#a5d6a7;font-size:.7rem;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;padding:.3rem 1rem;border-radius:30px;margin-bottom:1.4rem;
-}
-.hero-overline .material-icons-round{font-size:13px}
-.hero-text h1{font-family:'Merriweather',serif;font-size:clamp(1.8rem,3.8vw,2.9rem);font-weight:700;line-height:1.22;margin-bottom:1.3rem;text-shadow:0 2px 14px rgba(0,0,0,.3)}
-.hero-text h1 span{color:#a5d6a7}
-.hero-text p{font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.82;margin-bottom:1.8rem;max-width:510px;font-weight:300}
-.hero-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.9rem}
-.hero-tag{padding:.26rem .72rem;border-radius:20px;font-size:.69rem;font-weight:600;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);backdrop-filter:blur(4px)}
-.hero-btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--green);color:#fff;padding:.78rem 1.9rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .2s;box-shadow:0 4px 18px rgba(76,175,80,.42)}
-.hero-btn:hover{background:var(--green-dark);transform:translateY(-2px)}
-.hero-btn .material-icons-round{font-size:17px}
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center 35%;
+    }
 
-/* Phone/splash mockup */
-.hero-visual{display:flex;justify-content:center;align-items:center}
-.phone-shell{width:215px;background:#111;border-radius:34px;padding:8px;box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.07);position:relative}
-.phone-shell::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:76px;height:20px;background:#111;border-radius:0 0 12px 12px;z-index:5}
-.phone-screen{border-radius:26px;overflow:hidden;background:#eee;aspect-ratio:.47}
-/* IMAGE: splash screen
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, rgba(0, 0, 0, .80) 0%, rgba(0, 0, 0, .58) 50%, rgba(0, 0, 0, .18) 100%);
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 270px;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero-text {
+      color: #fff
+    }
+
+    .hero-overline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(76, 175, 80, .22);
+      border: 1px solid rgba(76, 175, 80, .45);
+      color: #a5d6a7;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-overline .material-icons-round {
+      font-size: 13px
+    }
+
+    .hero-text h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 3.8vw, 2.9rem);
+      font-weight: 700;
+      line-height: 1.22;
+      margin-bottom: 1.3rem;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .3)
+    }
+
+    .hero-text h1 span {
+      color: #a5d6a7
+    }
+
+    .hero-text p {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .78);
+      line-height: 1.82;
+      margin-bottom: 1.8rem;
+      max-width: 510px;
+      font-weight: 300
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-bottom: 1.9rem
+    }
+
+    .hero-tag {
+      padding: .26rem .72rem;
+      border-radius: 20px;
+      font-size: .69rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, .22);
+      color: rgba(255, 255, 255, .85);
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(4px)
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: var(--green);
+      color: #fff;
+      padding: .78rem 1.9rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .88rem;
+      text-decoration: none;
+      transition: all .2s;
+      box-shadow: 0 4px 18px rgba(76, 175, 80, .42)
+    }
+
+    .hero-btn:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px)
+    }
+
+    .hero-btn .material-icons-round {
+      font-size: 17px
+    }
+
+    /* Phone/splash mockup */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    .phone-shell {
+      width: 215px;
+      background: #111;
+      border-radius: 34px;
+      padding: 8px;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .07);
+      position: relative
+    }
+
+    .phone-shell::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 20px;
+      background: #111;
+      border-radius: 0 0 12px 12px;
+      z-index: 5
+    }
+
+    .phone-screen {
+      border-radius: 26px;
+      overflow: hidden;
+      background: #eee;
+      aspect-ratio: .47
+    }
+
+    /* IMAGE: splash screen
    HOW TO CHANGE: replace src with your splash screen file path:
    src="images/splash.png"
    Portrait screenshot (~9:19 ratio) works best inside this phone frame.
 */
-.phone-screen img{width:100%;height:100%;object-fit:cover;display:block}
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
 
-/* ─────────────────────────────────────────
+    /* ─────────────────────────────────────────
    PARALLAX BAND  (between Tech & Milestones)
    IMAGE: parallax-bg
    HOW TO CHANGE: replace url('...') with url('images/parallax-bg.jpg')
 ───────────────────────────────────────── */
-.parallax-band{
-  height:320px;
-  background-image:url('images/parallax-bg.jpg');
-  background-attachment:fixed;
-  background-size:cover;background-position:center;
-  position:relative;display:flex;align-items:center;justify-content:center;
-}
-.parallax-band::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(56,142,60,.85),rgba(233,30,99,.65));
-}
-.parallax-content{position:relative;z-index:1;text-align:center;color:#fff;padding:2rem}
-.parallax-content h2{font-family:'Merriweather',serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;margin-bottom:.8rem;text-shadow:0 2px 10px rgba(0,0,0,.3)}
-.parallax-content p{font-size:.9rem;opacity:.88;max-width:560px;line-height:1.8;margin:0 auto}
-.parallax-stats{display:flex;gap:3.5rem;justify-content:center;margin-top:1.6rem;flex-wrap:wrap}
-.p-stat .num{font-family:'Merriweather',serif;font-size:1.9rem;font-weight:700;line-height:1}
-.p-stat .lbl{font-size:.68rem;opacity:.78;margin-top:.25rem;letter-spacing:.05em;text-transform:uppercase}
+    .parallax-band {
+      height: 320px;
+      background-image: url('images/parallax-bg.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* ─────────────────────────────────────────
+    .parallax-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(56, 142, 60, .85), rgba(233, 30, 99, .65));
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      padding: 2rem
+    }
+
+    .parallax-content h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 700;
+      margin-bottom: .8rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .3)
+    }
+
+    .parallax-content p {
+      font-size: .9rem;
+      opacity: .88;
+      max-width: 560px;
+      line-height: 1.8;
+      margin: 0 auto
+    }
+
+    .parallax-stats {
+      display: flex;
+      gap: 3.5rem;
+      justify-content: center;
+      margin-top: 1.6rem;
+      flex-wrap: wrap
+    }
+
+    .p-stat .num {
+      font-family: 'Merriweather', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1
+    }
+
+    .p-stat .lbl {
+      font-size: .68rem;
+      opacity: .78;
+      margin-top: .25rem;
+      letter-spacing: .05em;
+      text-transform: uppercase
+    }
+
+    /* ─────────────────────────────────────────
    SHARED SECTION STYLES
 ───────────────────────────────────────── */
-section{padding:5.5rem 2.5rem}
-.container{max-width:1100px;margin:0 auto}
-.section-eyebrow{display:inline-flex;align-items:center;gap:.42rem;color:var(--green-dark);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
-.section-eyebrow::before{content:'';width:22px;height:2px;background:var(--green);border-radius:2px}
-.section-eyebrow.c{justify-content:center}.section-eyebrow.c::before{display:none}
-.section-title{font-family:'Merriweather',serif;font-size:clamp(1.55rem,2.8vw,2.1rem);font-weight:700;color:var(--text);line-height:1.25;margin-bottom:.85rem}
-.section-sub{color:var(--muted);font-size:.9rem;line-height:1.78;max-width:640px}
-.section-header{margin-bottom:3rem}
-.section-header.center{text-align:center}.section-header.center .section-sub{margin:0 auto}
+    section {
+      padding: 5.5rem 2.5rem
+    }
 
-/* ─────────────────────────────────────────
+    .container {
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .42rem;
+      color: var(--green-dark);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .6rem
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px
+    }
+
+    .section-eyebrow.c {
+      justify-content: center
+    }
+
+    .section-eyebrow.c::before {
+      display: none
+    }
+
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: .85rem
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.78;
+      max-width: 640px
+    }
+
+    .section-header {
+      margin-bottom: 3rem
+    }
+
+    .section-header.center {
+      text-align: center
+    }
+
+    .section-header.center .section-sub {
+      margin: 0 auto
+    }
+
+    /* ─────────────────────────────────────────
    LITERATURE SURVEY
 ───────────────────────────────────────── */
-#project-scope{background:#fff}
-.lit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
-.lit-card{background:#fff;border-radius:var(--r);padding:1.55rem 1.4rem;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
-.lit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.lc-g::before{background:var(--green)}.lc-p::before{background:var(--pink)}.lc-y::before{background:var(--yellow)}.lc-t::before{background:#009688}
-.lit-card:hover{transform:translateY(-5px);box-shadow:var(--sh-md)}
-.lit-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
-.lc-g .lit-icon{background:var(--green-soft);color:var(--green-dark)}
-.lc-p .lit-icon{background:var(--pink-soft);color:var(--pink)}
-.lc-y .lit-icon{background:var(--yellow-soft);color:var(--yellow-dark)}
-.lc-t .lit-icon{background:#E0F2F1;color:#009688}
-.lit-icon .material-icons-round{font-size:21px}
-.lit-card h3{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.45rem}
-.lit-card p{font-size:.79rem;color:var(--muted);line-height:1.74}
+    #project-scope {
+      background: #fff
+    }
 
-/* ─────────────────────────────────────────
+    .lit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem
+    }
+
+    .lit-card {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 1.55rem 1.4rem;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .lit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px
+    }
+
+    .lc-g::before {
+      background: var(--green)
+    }
+
+    .lc-p::before {
+      background: var(--pink)
+    }
+
+    .lc-y::before {
+      background: var(--yellow)
+    }
+
+    .lc-t::before {
+      background: #009688
+    }
+
+    .lit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sh-md)
+    }
+
+    .lit-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem
+    }
+
+    .lc-g .lit-icon {
+      background: var(--green-soft);
+      color: var(--green-dark)
+    }
+
+    .lc-p .lit-icon {
+      background: var(--pink-soft);
+      color: var(--pink)
+    }
+
+    .lc-y .lit-icon {
+      background: var(--yellow-soft);
+      color: var(--yellow-dark)
+    }
+
+    .lc-t .lit-icon {
+      background: #E0F2F1;
+      color: #009688
+    }
+
+    .lit-icon .material-icons-round {
+      font-size: 21px
+    }
+
+    .lit-card h3 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .45rem
+    }
+
+    .lit-card p {
+      font-size: .79rem;
+      color: var(--muted);
+      line-height: 1.74
+    }
+
+    /* ─────────────────────────────────────────
    RESEARCH GAP
 ───────────────────────────────────────── */
-#research_gap{background:var(--light)}
-.gap-two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
-.gap-block{background:#fff;border-radius:var(--r);padding:2rem;border:1px solid var(--border)}
-.gap-block h3{font-family:'Merriweather',serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.85rem}
-.gap-block p{font-size:.84rem;color:var(--muted);line-height:1.78;margin-bottom:.7rem}
-.gap-tag{display:inline-flex;align-items:center;gap:.32rem;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.24rem .72rem;border-radius:4px;margin-bottom:.7rem}
-.gap-tag.gap{background:var(--pink-soft);color:var(--pink)}
-.gap-tag.sol{background:var(--green-soft);color:var(--green-dark)}
-.gap-tag .material-icons-round{font-size:12px}
+    #research_gap {
+      background: var(--light)
+    }
 
-/* ─────────────────────────────────────────
+    .gap-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem
+    }
+
+    .gap-block {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 2rem;
+      border: 1px solid var(--border)
+    }
+
+    .gap-block h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .85rem
+    }
+
+    .gap-block p {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.78;
+      margin-bottom: .7rem
+    }
+
+    .gap-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .32rem;
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .24rem .72rem;
+      border-radius: 4px;
+      margin-bottom: .7rem
+    }
+
+    .gap-tag.gap {
+      background: var(--pink-soft);
+      color: var(--pink)
+    }
+
+    .gap-tag.sol {
+      background: var(--green-soft);
+      color: var(--green-dark)
+    }
+
+    .gap-tag .material-icons-round {
+      font-size: 12px
+    }
+
+    /* ─────────────────────────────────────────
    OBJECTIVES
 ───────────────────────────────────────── */
-#research_objectives{background:#fff}
-.obj-list{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.obj-item{display:grid;grid-template-columns:58px 1fr;border-bottom:1px solid var(--border);transition:background .18s}
-.obj-item:last-child{border-bottom:none}
-.obj-item:hover{background:var(--green-soft)}
-.obj-num{background:var(--green-soft);display:flex;align-items:center;justify-content:center;font-family:'Merriweather',serif;font-size:1.1rem;font-weight:700;color:var(--green-dark);border-right:1px solid var(--border)}
-.obj-content{padding:1.35rem 1.55rem}
-.obj-content h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.38rem}
-.obj-content p{font-size:.81rem;color:var(--muted);line-height:1.72}
+    #research_objectives {
+      background: #fff
+    }
 
-/* ─────────────────────────────────────────
+    .obj-list {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden
+    }
+
+    .obj-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      border-bottom: 1px solid var(--border);
+      transition: background .18s
+    }
+
+    .obj-item:last-child {
+      border-bottom: none
+    }
+
+    .obj-item:hover {
+      background: var(--green-soft)
+    }
+
+    .obj-num {
+      background: var(--green-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      border-right: 1px solid var(--border)
+    }
+
+    .obj-content {
+      padding: 1.35rem 1.55rem
+    }
+
+    .obj-content h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .38rem
+    }
+
+    .obj-content p {
+      font-size: .81rem;
+      color: var(--muted);
+      line-height: 1.72
+    }
+
+    /* ─────────────────────────────────────────
    METHODOLOGY
 ───────────────────────────────────────── */
-#methodology{background:var(--light)}
-.method-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-.method-text p{font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1rem}
-.method-steps{display:flex;flex-direction:column;gap:.6rem;margin-top:.8rem}
-.method-step{display:flex;align-items:flex-start;gap:.72rem;padding:.85rem 1rem;background:#fff;border-radius:8px;border:1px solid var(--border)}
-.method-step .material-icons-round{font-size:17px;color:var(--green);flex-shrink:0;margin-top:2px}
-.method-step strong{display:block;font-size:.83rem;color:var(--text);margin-bottom:.18rem;font-weight:700}
-.method-step p{font-size:.78rem;color:var(--muted);line-height:1.58;margin:0}
-.diagram-wrap{text-align:center}
+    #methodology {
+      background: var(--light)
+    }
 
-/* IMAGE: system overview diagram
+    .method-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start
+    }
+
+    .method-text p {
+      font-size: .87rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem
+    }
+
+    .method-steps {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-top: .8rem
+    }
+
+    .method-step {
+      display: flex;
+      align-items: flex-start;
+      gap: .72rem;
+      padding: .85rem 1rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border)
+    }
+
+    .method-step .material-icons-round {
+      font-size: 17px;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .method-step strong {
+      display: block;
+      font-size: .83rem;
+      color: var(--text);
+      margin-bottom: .18rem;
+      font-weight: 700
+    }
+
+    .method-step p {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.58;
+      margin: 0
+    }
+
+    .diagram-wrap {
+      text-align: center
+    }
+
+    /* IMAGE: system overview diagram
    HOW TO CHANGE — Option 1 (recommended, hard-coded):
      Replace the entire .diagram-upload div below with:
      <img src="images/architecture.jpg" alt="System Architecture" style="width:100%;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.10);border:1px solid #E0E0E0">
@@ -210,119 +792,632 @@ section{padding:5.5rem 2.5rem}
    Option 2 (click-to-upload at runtime, already wired up):
      Just click the dashed box when viewing in a browser to pick your file.
 */
-.diagram-upload{border-radius:var(--r);border:2px dashed var(--green);background:var(--green-soft);min-height:290px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;text-align:center;padding:2rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s}
-.diagram-upload:hover{background:#cde8d0}
-.diagram-upload .du-icon{font-size:3rem;color:var(--green)}
-.diagram-upload .du-title{font-size:.85rem;font-weight:700;color:var(--green-dark)}
-.diagram-upload .du-hint{font-size:.72rem;color:var(--green-dark);opacity:.7;max-width:230px;line-height:1.55}
-.diagram-upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
-.diagram-upload .du-preview{width:100%;height:100%;object-fit:contain;border-radius:10px;display:none;position:absolute;inset:0;background:#fff}
-.diagram-caption{font-size:.77rem;color:var(--muted);margin-top:.7rem;font-style:italic}
+    .diagram-upload {
+      border-radius: var(--r);
+      border: 2px dashed var(--green);
+      background: var(--green-soft);
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      text-align: center;
+      padding: 2rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background .2s
+    }
 
-/* ─────────────────────────────────────────
+    .diagram-upload:hover {
+      background: #cde8d0
+    }
+
+    .diagram-upload .du-icon {
+      font-size: 3rem;
+      color: var(--green)
+    }
+
+    .diagram-upload .du-title {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--green-dark)
+    }
+
+    .diagram-upload .du-hint {
+      font-size: .72rem;
+      color: var(--green-dark);
+      opacity: .7;
+      max-width: 230px;
+      line-height: 1.55
+    }
+
+    .diagram-upload input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer
+    }
+
+    .diagram-upload .du-preview {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: #fff
+    }
+
+    .diagram-caption {
+      font-size: .77rem;
+      color: var(--muted);
+      margin-top: .7rem;
+      font-style: italic
+    }
+
+    /* ─────────────────────────────────────────
    TECHNOLOGIES — real devicon logos
    Style: circular icon + label, same as sample image
 ───────────────────────────────────────── */
-#tech_used{background:#fff;padding:5rem 2.5rem}
-.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:2rem 1.5rem;margin-top:2rem}
-.tech-item{display:flex;flex-direction:column;align-items:center;gap:.65rem;text-align:center}
-.tech-circle{
-  width:90px;height:90px;border-radius:50%;
-  background:#f5f5f5;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid #ebebeb;
-  transition:box-shadow .22s,transform .22s;
-}
-.tech-item:hover .tech-circle{box-shadow:0 4px 18px rgba(0,0,0,.12);transform:translateY(-4px)}
-.tech-circle i{font-size:2.5rem;line-height:1}
-.tech-circle img{width:52px;height:52px;object-fit:contain}
-.tech-item span{font-size:.8rem;color:var(--mid);font-weight:500;line-height:1.3}
+    #tech_used {
+      background: #fff;
+      padding: 5rem 2.5rem
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 2rem 1.5rem;
+      margin-top: 2rem
+    }
+
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .65rem;
+      text-align: center
+    }
+
+    .tech-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ebebeb;
+      transition: box-shadow .22s, transform .22s;
+    }
+
+    .tech-item:hover .tech-circle {
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .12);
+      transform: translateY(-4px)
+    }
+
+    .tech-circle i {
+      font-size: 2.5rem;
+      line-height: 1
+    }
+
+    .tech-circle img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain
+    }
+
+    .tech-item span {
+      font-size: .8rem;
+      color: var(--mid);
+      font-weight: 500;
+      line-height: 1.3
+    }
 
 
-/* MILESTONES TIMELINE */
-#milestones{background:var(--light)}
-.timeline-container{position:relative;padding:1rem 0 2rem}
-.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--green),var(--pink),var(--yellow));transform:translateX(-50%);border-radius:2px}
-.tl-item{display:flex;justify-content:flex-end;padding-right:calc(50% + 2.5rem);padding-bottom:3.5rem;position:relative;opacity:0;transform:translateX(-50px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.tl-item:nth-child(even){justify-content:flex-start;padding-right:0;padding-left:calc(50% + 2.5rem);transform:translateX(50px)}
-.tl-item.visible{opacity:1;transform:translateX(0)}
-.tl-dot{position:absolute;left:50%;top:1.6rem;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid #fff;box-shadow:0 0 0 3px var(--green);transform:translateX(-50%);z-index:2;transition:transform .3s}
-.tl-item:nth-child(1) .tl-dot{background:var(--green);box-shadow:0 0 0 3px var(--green)}
-.tl-item:nth-child(2) .tl-dot{background:var(--pink);box-shadow:0 0 0 3px var(--pink)}
-.tl-item:nth-child(3) .tl-dot{background:var(--yellow);box-shadow:0 0 0 3px var(--yellow)}
-.tl-item:nth-child(4) .tl-dot{background:var(--green);box-shadow:0 0 0 3px var(--green)}
-.tl-item:nth-child(5) .tl-dot{background:var(--pink);box-shadow:0 0 0 3px var(--pink)}
-.tl-item:hover .tl-dot{transform:translateX(-50%) scale(1.4)}
-.tl-card{background:#fff;border-radius:var(--radius);padding:1.5rem 1.7rem;max-width:420px;box-shadow:var(--shadow-sm);border:1px solid var(--border);position:relative;transition:box-shadow .25s,transform .25s}
-.tl-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
-.tl-connector{position:absolute;top:1.5rem;width:20px;height:2px;background:var(--border)}
-.tl-item:not(:nth-child(even)) .tl-connector{right:-20px}
-.tl-item:nth-child(even) .tl-connector{left:-20px}
-.tl-period{font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem}
-.tl-period .material-icons-round{font-size:13px;color:var(--green)}
-.tl-card h4{font-family:'Merriweather',serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
-.tl-card p{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:.9rem}
-.tl-footer{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}
-.tl-marks{display:inline-flex;align-items:center;gap:.3rem;background:var(--green-soft);color:var(--green-dark);font-size:.7rem;font-weight:700;padding:.22rem .65rem;border-radius:20px}
-.tl-marks .material-icons-round{font-size:12px}
-.tl-deadline{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;color:var(--muted)}
-.tl-deadline .material-icons-round{font-size:12px}
-.tl-status{padding:.2rem .65rem;border-radius:20px;font-size:.68rem;font-weight:700;margin-left:auto}
-.st-done{background:#e8f5e9;color:#2e7d32}.st-now{background:#fff8e0;color:#8a5a00}.st-soon{background:#f3e5f5;color:#6a1a8a}
+    /* MILESTONES TIMELINE */
+    #milestones {
+      background: var(--light)
+    }
+
+    .timeline-container {
+      position: relative;
+      padding: 1rem 0 2rem
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green), var(--pink), var(--yellow));
+      transform: translateX(-50%);
+      border-radius: 2px
+    }
+
+    .tl-item {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: calc(50% + 2.5rem);
+      padding-bottom: 3.5rem;
+      position: relative;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .tl-item:nth-child(even) {
+      justify-content: flex-start;
+      padding-right: 0;
+      padding-left: calc(50% + 2.5rem);
+      transform: translateX(50px)
+    }
+
+    .tl-item.visible {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: 50%;
+      top: 1.6rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px var(--green);
+      transform: translateX(-50%);
+      z-index: 2;
+      transition: transform .3s
+    }
+
+    .tl-item:nth-child(1) .tl-dot {
+      background: var(--green);
+      box-shadow: 0 0 0 3px var(--green)
+    }
+
+    .tl-item:nth-child(2) .tl-dot {
+      background: var(--pink);
+      box-shadow: 0 0 0 3px var(--pink)
+    }
+
+    .tl-item:nth-child(3) .tl-dot {
+      background: var(--yellow);
+      box-shadow: 0 0 0 3px var(--yellow)
+    }
+
+    .tl-item:nth-child(4) .tl-dot {
+      background: var(--green);
+      box-shadow: 0 0 0 3px var(--green)
+    }
+
+    .tl-item:nth-child(5) .tl-dot {
+      background: var(--pink);
+      box-shadow: 0 0 0 3px var(--pink)
+    }
+
+    .tl-item:hover .tl-dot {
+      transform: translateX(-50%) scale(1.4)
+    }
+
+    .tl-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.5rem 1.7rem;
+      max-width: 420px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: box-shadow .25s, transform .25s
+    }
+
+    .tl-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px)
+    }
+
+    .tl-connector {
+      position: absolute;
+      top: 1.5rem;
+      width: 20px;
+      height: 2px;
+      background: var(--border)
+    }
+
+    .tl-item:not(:nth-child(even)) .tl-connector {
+      right: -20px
+    }
+
+    .tl-item:nth-child(even) .tl-connector {
+      left: -20px
+    }
+
+    .tl-period {
+      font-size: .68rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: .35rem
+    }
+
+    .tl-period .material-icons-round {
+      font-size: 13px;
+      color: var(--green)
+    }
+
+    .tl-card h4 {
+      font-family: 'Merriweather', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem
+    }
+
+    .tl-card p {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: .9rem
+    }
+
+    .tl-footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem
+    }
+
+    .tl-marks {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: .7rem;
+      font-weight: 700;
+      padding: .22rem .65rem;
+      border-radius: 20px
+    }
+
+    .tl-marks .material-icons-round {
+      font-size: 12px
+    }
+
+    .tl-deadline {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .7rem;
+      color: var(--muted)
+    }
+
+    .tl-deadline .material-icons-round {
+      font-size: 12px
+    }
+
+    .tl-status {
+      padding: .2rem .65rem;
+      border-radius: 20px;
+      font-size: .68rem;
+      font-weight: 700;
+      margin-left: auto
+    }
+
+    .st-done {
+      background: #e8f5e9;
+      color: #2e7d32
+    }
+
+    .st-now {
+      background: #fff8e0;
+      color: #8a5a00
+    }
+
+    .st-soon {
+      background: #f3e5f5;
+      color: #6a1a8a
+    }
 
 
-/* ─────────────────────────────────────────
+    /* ─────────────────────────────────────────
    DOCUMENTS
 ───────────────────────────────────────── */
-#downloads{background:#fff}
-.dl-section-head{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid var(--border);padding-bottom:.5rem;margin-bottom:1rem;margin-top:2rem;display:flex;align-items:center;gap:.5rem}
-.dl-section-head .material-icons-round{font-size:16px;color:var(--green)}
-.dl-section-head:first-of-type{margin-top:0}
-.dl-row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.2rem;background:var(--off);border-radius:8px;border:1px solid var(--border);margin-bottom:.6rem;gap:1rem;transition:all .2s}
-.dl-row:hover{border-color:var(--green);background:var(--green-soft)}
-.dl-left{display:flex;align-items:center;gap:.75rem;flex:1;min-width:0}
-.dl-left .material-icons-round{font-size:20px;color:var(--green);flex-shrink:0}
-.dl-info h5{font-size:.85rem;font-weight:700;color:var(--text)}
-.dl-info span{font-size:.72rem;color:var(--muted)}
-.dl-btns{display:flex;gap:.5rem;flex-wrap:wrap;flex-shrink:0}
-.dl-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;border-radius:6px;font-size:.74rem;font-weight:700;text-decoration:none;cursor:pointer;transition:all .18s;border:none;white-space:nowrap}
-.dl-btn .material-icons-round{font-size:13px}
-.btn-primary{background:var(--green);color:#fff}.btn-primary:hover{background:var(--green-dark)}
-.btn-teal{background:#E0F2F1;color:#00695C;border:1px solid #80CBC4}.btn-teal:hover{background:#009688;color:#fff}
-.btn-disabled{background:var(--light);color:var(--muted);border:1px solid var(--border);cursor:not-allowed;pointer-events:none}
+    #downloads {
+      background: #fff
+    }
 
-/* ─────────────────────────────────────────
+    .dl-section-head {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: .5rem;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .dl-section-head .material-icons-round {
+      font-size: 16px;
+      color: var(--green)
+    }
+
+    .dl-section-head:first-of-type {
+      margin-top: 0
+    }
+
+    .dl-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.2rem;
+      background: var(--off);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: .6rem;
+      gap: 1rem;
+      transition: all .2s
+    }
+
+    .dl-row:hover {
+      border-color: var(--green);
+      background: var(--green-soft)
+    }
+
+    .dl-left {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex: 1;
+      min-width: 0
+    }
+
+    .dl-left .material-icons-round {
+      font-size: 20px;
+      color: var(--green);
+      flex-shrink: 0
+    }
+
+    .dl-info h5 {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .dl-info span {
+      font-size: .72rem;
+      color: var(--muted)
+    }
+
+    .dl-btns {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff
+    }
+
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .38rem .85rem;
+      border-radius: 6px;
+      font-size: .74rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .18s;
+      border-radius: 8px;
+      white-space: nowrap;
+      background: var(--green);
+      color: #fff
+    }
+
+    .dl-btn .material-icons-round {
+      font-size: 13px
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff
+    }
+
+    .btn-primary:hover {
+      background: var(--green-dark)
+    }
+
+    .btn-teal {
+      background: #E0F2F1;
+      color: #00695C;
+      border: 1px solid #80CBC4
+    }
+
+    .btn-teal:hover {
+      background: #009688;
+      color: #fff
+    }
+
+    .btn-disabled {
+      background: var(--light);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      cursor: not-allowed;
+      pointer-events: none
+    }
+
+    /* ─────────────────────────────────────────
    PRESENTATIONS
 ───────────────────────────────────────── */
-#presentations{background:var(--light)}
-.pres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:1.2rem}
-.pres-card{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:transform .25s,box-shadow .25s}
-.pres-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
-.pres-thumb{height:108px;display:flex;align-items:center;justify-content:center}
-.pt-g{background:var(--green-soft)}.pt-p{background:var(--pink-soft)}.pt-y{background:var(--yellow-soft)}.pt-t{background:#E0F2F1}
-.pres-thumb .material-icons-round{font-size:2.6rem}
-.pt-g .material-icons-round{color:var(--green-dark)}.pt-p .material-icons-round{color:var(--pink)}.pt-y .material-icons-round{color:var(--yellow-dark)}.pt-t .material-icons-round{color:#009688}
-.pres-body{padding:1.2rem}
-.pres-date{font-size:.68rem;color:var(--muted);margin-bottom:.3rem;display:flex;align-items:center;gap:.3rem}
-.pres-date .material-icons-round{font-size:12px}
-.pres-body h4{font-size:.87rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-.pres-body p{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:.9rem}
+    #presentations {
+      background: var(--light)
+    }
 
-/* ─────────────────────────────────────────
+    .pres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      gap: 1.2rem
+    }
+
+    .pres-card {
+      background: #fff;
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s
+    }
+
+    .pres-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md)
+    }
+
+    .pres-thumb {
+      height: 108px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .pt-g {
+      background: var(--green-soft)
+    }
+
+    .pt-p {
+      background: var(--pink-soft)
+    }
+
+    .pt-y {
+      background: var(--yellow-soft)
+    }
+
+    .pt-t {
+      background: #E0F2F1
+    }
+
+    .pres-thumb .material-icons-round {
+      font-size: 2.6rem
+    }
+
+    .pt-g .material-icons-round {
+      color: var(--green-dark)
+    }
+
+    .pt-p .material-icons-round {
+      color: var(--pink)
+    }
+
+    .pt-y .material-icons-round {
+      color: var(--yellow-dark)
+    }
+
+    .pt-t .material-icons-round {
+      color: #009688
+    }
+
+    .pres-body {
+      padding: 1.2rem
+    }
+
+    .pres-date {
+      font-size: .68rem;
+      color: var(--muted);
+      margin-bottom: .3rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem
+    }
+
+    .pres-date .material-icons-round {
+      font-size: 12px
+    }
+
+    .pres-body h4 {
+      font-size: .87rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .4rem
+    }
+
+    .pres-body p {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: .9rem
+    }
+
+    /* ─────────────────────────────────────────
    ABOUT — team members with prominent photos
    Photo card: large image on top, info below
    (based on sample image 2 — Dr. Janaka card style)
 ───────────────────────────────────────── */
-#about{background:#fff}
-.sub-head{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.2rem;display:flex;align-items:center;gap:.4rem}
-.sub-head .material-icons-round{font-size:16px;color:var(--green)}
+    #about {
+      background: #fff
+    }
 
-/* Supervisor cards — larger photo on top */
-.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:3rem}
-.sv-card{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;transition:box-shadow .25s,transform .25s}
-.sv-card:hover{box-shadow:var(--sh-md);transform:translateY(-4px)}
-.sv-photo-wrap img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
-/* IMAGE: supervisor photos
+    .sub-head {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    .sub-head .material-icons-round {
+      font-size: 16px;
+      color: var(--green)
+    }
+
+    /* Supervisor cards — larger photo on top */
+    .sv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 3rem
+    }
+
+    .sv-card {
+      background: #fff;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s
+    }
+
+    .sv-card:hover {
+      box-shadow: var(--sh-md);
+      transform: translateY(-4px)
+    }
+
+    .sv-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block
+    }
+
+    /* IMAGE: supervisor photos
    HOW TO CHANGE: replace src in each <img> tag inside .sv-photo-wrap
    with your local file path, e.g.:
      src="images/team/supervisor.jpg"
@@ -330,26 +1425,119 @@ section{padding:5.5rem 2.5rem}
      src="images/team/external.jpg"
    Image should be portrait orientation for best result.
 */
-.sv-photo-wrap img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
-.sv-photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f5f5f5}
-.sv-photo-placeholder .material-icons-round{font-size:5rem;color:#ccc}
-.sv-info{padding:1.1rem 1.2rem}
-.sv-info h4{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem}
-.sv-badge{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .6rem;border-radius:4px;margin-bottom:.45rem}
-.sv-badge.main{background:var(--green-soft);color:var(--green-dark)}
-.sv-badge.co{background:var(--yellow-soft);color:var(--yellow-dark)}
-.sv-badge.ext{background:var(--pink-soft);color:var(--pink)}
-.sv-dept-label{font-size:.73rem;font-weight:700;color:var(--text);margin-bottom:.15rem}
-.sv-dept{font-size:.75rem;color:var(--muted);line-height:1.5;margin-bottom:.3rem}
-.sv-email{font-size:.73rem;color:var(--green-dark);font-weight:600;text-decoration:none}
-.sv-email:hover{color:var(--green)}
+    .sv-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block
+    }
 
-/* Team member cards — same prominent photo style */
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem}
-.member-card{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;transition:box-shadow .25s,transform .25s}
-.member-card:hover{box-shadow:var(--sh-md);transform:translateY(-4px)}
-.member-photo-wrap{width:100%;height:210px;overflow:hidden;background:#f0f0f0;position:relative}
-/* IMAGE: team member photos
+    .sv-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5
+    }
+
+    .sv-photo-placeholder .material-icons-round {
+      font-size: 5rem;
+      color: #ccc
+    }
+
+    .sv-info {
+      padding: 1.1rem 1.2rem
+    }
+
+    .sv-info h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .35rem
+    }
+
+    .sv-badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: .2rem .6rem;
+      border-radius: 4px;
+      margin-bottom: .45rem
+    }
+
+    .sv-badge.main {
+      background: var(--green-soft);
+      color: var(--green-dark)
+    }
+
+    .sv-badge.co {
+      background: var(--yellow-soft);
+      color: var(--yellow-dark)
+    }
+
+    .sv-badge.ext {
+      background: var(--pink-soft);
+      color: var(--pink)
+    }
+
+    .sv-dept-label {
+      font-size: .73rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .15rem
+    }
+
+    .sv-dept {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: .3rem
+    }
+
+    .sv-email {
+      font-size: .73rem;
+      color: var(--green-dark);
+      font-weight: 600;
+      text-decoration: none
+    }
+
+    .sv-email:hover {
+      color: var(--green)
+    }
+
+    /* Team member cards — same prominent photo style */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.4rem
+    }
+
+    .member-card {
+      background: #fff;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s
+    }
+
+    .member-card:hover {
+      box-shadow: var(--sh-md);
+      transform: translateY(-4px)
+    }
+
+    .member-photo-wrap {
+      width: 100%;
+      height: 210px;
+      overflow: hidden;
+      background: #f0f0f0;
+      position: relative
+    }
+
+    /* IMAGE: team member photos
    HOW TO CHANGE: replace src in each <img> tag below with local paths:
      src="images/team/chirathi.jpg"
      src="images/team/piumi.jpg"
@@ -357,114 +1545,369 @@ section{padding:5.5rem 2.5rem}
      src="images/team/thamindu.jpg"
    Passport-style photos (face clearly visible) work best.
 */
-.member-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .35s}
-.member-card:hover .member-photo-wrap img{transform:scale(1.05)}
-.member-photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:800;color:#fff}
-.mp-g{background:linear-gradient(160deg,var(--green),var(--green-dark))}
-.mp-p{background:linear-gradient(160deg,#EC407A,#880E4F)}
-.mp-y{background:linear-gradient(160deg,var(--yellow),var(--yellow-dark))}
-.mp-t{background:linear-gradient(160deg,#26C6DA,#00838F)}
-.member-info{padding:1rem 1.1rem}
-.member-info h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.18rem}
-.member-info .m-role{font-size:.74rem;color:var(--green-dark);font-weight:600;margin-bottom:.18rem}
-.member-info .m-id{font-size:.7rem;color:var(--muted);margin-bottom:.25rem}
-.member-info a{font-size:.7rem;color:var(--green-dark);font-weight:600;text-decoration:none;word-break:break-all}
-.sp-note{margin-top:2rem;padding:1.3rem 1.6rem;background:var(--green-soft);border-radius:var(--r);border:1px solid rgba(76,175,80,.2);font-size:.83rem;color:var(--mid);display:flex;align-items:flex-start;gap:.75rem;line-height:1.72}
-.sp-note .material-icons-round{color:var(--green);flex-shrink:0;margin-top:2px}
+    .member-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform .35s
+    }
 
-/* ─────────────────────────────────────────
+    .member-card:hover .member-photo-wrap img {
+      transform: scale(1.05)
+    }
+
+    .member-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #fff
+    }
+
+    .mp-g {
+      background: linear-gradient(160deg, var(--green), var(--green-dark))
+    }
+
+    .mp-p {
+      background: linear-gradient(160deg, #EC407A, #880E4F)
+    }
+
+    .mp-y {
+      background: linear-gradient(160deg, var(--yellow), var(--yellow-dark))
+    }
+
+    .mp-t {
+      background: linear-gradient(160deg, #26C6DA, #00838F)
+    }
+
+    .member-info {
+      padding: 1rem 1.1rem
+    }
+
+    .member-info h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .18rem
+    }
+
+    .member-info .m-role {
+      font-size: .74rem;
+      color: var(--green-dark);
+      font-weight: 600;
+      margin-bottom: .18rem
+    }
+
+    .member-info .m-id {
+      font-size: .7rem;
+      color: var(--muted);
+      margin-bottom: .25rem
+    }
+
+    .member-info a {
+      font-size: .7rem;
+      color: var(--green-dark);
+      font-weight: 600;
+      text-decoration: none;
+      word-break: break-all
+    }
+
+    .sp-note {
+      margin-top: 2rem;
+      padding: 1.3rem 1.6rem;
+      background: var(--green-soft);
+      border-radius: var(--r);
+      border: 1px solid rgba(76, 175, 80, .2);
+      font-size: .83rem;
+      color: var(--mid);
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      line-height: 1.72
+    }
+
+    .sp-note .material-icons-round {
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    /* ─────────────────────────────────────────
    CONTACT
 ───────────────────────────────────────── */
-#contact{background:var(--light)}
-.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem}
-.contact-info h3{font-family:'Merriweather',serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:1.3rem}
-.ci-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem;padding:.85rem 1rem;background:#fff;border-radius:8px;border:1px solid var(--border)}
-.ci-item .material-icons-round{font-size:20px;color:var(--green);flex-shrink:0;margin-top:2px}
-.ci-item h5{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
-.ci-item p{font-size:.78rem;color:var(--muted);line-height:1.6}
-.ci-item a{font-size:.78rem;color:var(--green-dark);font-weight:600;text-decoration:none}
-.contact-form-wrap{background:#fff;border-radius:var(--r);padding:2rem;border:1px solid var(--border)}
-.contact-form-wrap h3{font-family:'Merriweather',serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:1.3rem}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.form-group{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.9rem}
-.form-group label{font-size:.74rem;font-weight:700;color:var(--mid)}
-.form-group input,.form-group textarea{padding:.72rem 1rem;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:.85rem;color:var(--text);outline:none;transition:border-color .18s}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--green)}
-.form-group textarea{min-height:120px;resize:vertical}
-.form-submit{background:var(--green);color:#fff;border:none;padding:.8rem 2rem;border-radius:7px;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.4rem}
-.form-submit:hover{background:var(--green-dark);transform:translateY(-1px)}
-.form-submit .material-icons-round{font-size:17px}
+    #contact {
+      background: var(--light)
+    }
 
-/* ─────────────────────────────────────────
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3rem
+    }
+
+    .contact-info h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.3rem
+    }
+
+    .ci-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: 1rem;
+      padding: .85rem 1rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border)
+    }
+
+    .ci-item .material-icons-round {
+      font-size: 20px;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .ci-item h5 {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .2rem
+    }
+
+    .ci-item p {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .ci-item a {
+      font-size: .78rem;
+      color: var(--green-dark);
+      font-weight: 600;
+      text-decoration: none
+    }
+
+    .contact-form-wrap {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 2rem;
+      border: 1px solid var(--border)
+    }
+
+    .contact-form-wrap h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.3rem
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      margin-bottom: .9rem
+    }
+
+    .form-group label {
+      font-size: .74rem;
+      font-weight: 700;
+      color: var(--mid)
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: .72rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: .85rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .18s
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--green)
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical
+    }
+
+    .form-submit {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: .8rem 2rem;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    .form-submit:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px)
+    }
+
+    .form-submit .material-icons-round {
+      font-size: 17px
+    }
+
+    /* ─────────────────────────────────────────
    FOOTER
 ───────────────────────────────────────── */
-footer{background:#1A1A1A;color:rgba(255,255,255,.4);text-align:center;padding:1.8rem 2rem;font-size:.78rem}
-footer strong{color:var(--green-light)}
+    footer {
+      background: #1A1A1A;
+      color: rgba(255, 255, 255, .4);
+      text-align: center;
+      padding: 1.8rem 2rem;
+      font-size: .78rem
+    }
 
-/* ─────────────────────────────────────────
+    footer strong {
+      color: var(--green-light)
+    }
+
+    /* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
-@media(max-width:1024px){
-  .lit-grid{grid-template-columns:repeat(2,1fr)}
-  .method-wrap{grid-template-columns:1fr}
-  .sv-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-visual{margin-top:2rem}.phone-shell{width:175px}
-  .gap-two-col,.contact-grid{grid-template-columns:1fr}
-  nav{padding:0 1.2rem}.nav-links{display:none}
-  .sv-grid{grid-template-columns:1fr}
-  .parallax-band{background-attachment:scroll}
-  .tl-outer{padding-left:44px}
-}
-@media(max-width:520px){
-  .lit-grid,.team-grid{grid-template-columns:1fr}
-  section{padding:4rem 1.5rem}
-  .form-row{grid-template-columns:1fr}
-}
-</style>
+    @media(max-width:1024px) {
+      .lit-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .method-wrap {
+        grid-template-columns: 1fr
+      }
+
+      .sv-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:768px) {
+      .hero-inner {
+        grid-template-columns: 1fr
+      }
+
+      .hero-visual {
+        margin-top: 2rem
+      }
+
+      .phone-shell {
+        width: 175px
+      }
+
+      .gap-two-col,
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      nav {
+        padding: 0 1.2rem
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .sv-grid {
+        grid-template-columns: 1fr
+      }
+
+      .parallax-band {
+        background-attachment: scroll
+      }
+
+      .tl-outer {
+        padding-left: 44px
+      }
+    }
+
+    @media(max-width:520px) {
+
+      .lit-grid,
+      .team-grid {
+        grid-template-columns: 1fr
+      }
+
+      section {
+        padding: 4rem 1.5rem
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      NAV
 ════════════════════════════════════ -->
-<nav id="mainNav">
-  <a href="#home" class="nav-logo">    
-        <img src="images/logo.png" alt="Voice Bridge Logo" class="nav-logo-img">
-    <span class="nav-logo-text"><span>Voice</span> Bridge</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li class="nav-item">
-      <a href="#project-scope">Project Scope <span class="material-icons-round" style="font-size:14px;vertical-align:middle">expand_more</span></a>
-      <div class="dropdown">
-        <a href="#project-scope"><span class="material-icons-round">library_books</span>Literature Survey</a>
-        <a href="#research_gap"><span class="material-icons-round">find_in_page</span>Research Gap</a>
-        <a href="#research_objectives"><span class="material-icons-round">flag</span>Research Objectives</a>
-        <a href="#methodology"><span class="material-icons-round">account_tree</span>Methodology</a>
-        <a href="#tech_used"><span class="material-icons-round">memory</span>Technologies</a>
-      </div>
-    </li>
-    <li><a href="#milestones">Milestones</a></li>
-    <li class="nav-item">
-      <a href="#downloads">Downloads <span class="material-icons-round" style="font-size:14px;vertical-align:middle">expand_more</span></a>
-      <div class="dropdown">
-        <a href="#downloads"><span class="material-icons-round">folder_open</span>Documents</a>
-        <a href="#presentations"><span class="material-icons-round">slideshow</span>Presentations</a>
-      </div>
-    </li>
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#contact">Contact Us</a></li>
-  </ul>
-</nav>
+  <nav id="mainNav">
+    <a href="#home" class="nav-logo">
+      <img src="images/logo.png" alt="Voice Bridge Logo" class="nav-logo-img">
+      <span class="nav-logo-text"><span>Voice</span> Bridge</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li class="nav-item">
+        <a href="#project-scope">Project Scope <span class="material-icons-round"
+            style="font-size:14px;vertical-align:middle">expand_more</span></a>
+        <div class="dropdown">
+          <a href="#project-scope"><span class="material-icons-round">library_books</span>Literature Survey</a>
+          <a href="#research_gap"><span class="material-icons-round">find_in_page</span>Research Gap</a>
+          <a href="#research_objectives"><span class="material-icons-round">flag</span>Research Objectives</a>
+          <a href="#methodology"><span class="material-icons-round">account_tree</span>Methodology</a>
+          <a href="#tech_used"><span class="material-icons-round">memory</span>Technologies</a>
+        </div>
+      </li>
+      <li><a href="#milestones">Milestones</a></li>
+      <li class="nav-item">
+        <a href="#downloads">Downloads <span class="material-icons-round"
+            style="font-size:14px;vertical-align:middle">expand_more</span></a>
+        <div class="dropdown">
+          <a href="#downloads"><span class="material-icons-round">folder_open</span>Documents</a>
+          <a href="#presentations"><span class="material-icons-round">slideshow</span>Presentations</a>
+        </div>
+      </li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      HERO
 ════════════════════════════════════ -->
-<section id="home">
-  <!--
+  <section id="home">
+    <!--
     IMAGE: hero-bg
     The .hero-bg div uses a CSS background-image (set in the <style> above).
     TO CHANGE TO YOUR OWN PHOTO:
@@ -472,28 +1915,30 @@ footer strong{color:var(--green-light)}
       and replace the URL with:  url('images/hero-bg.jpg')
     Use a photo of a speech therapist communicating with a child.
   -->
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-inner">
-    <div class="hero-text">
-      <h1>Intelligent Multimodal AI Platform for <span>Speech &amp; Language Therapy</span></h1>
-      <p>Voice Bridge bridges clinical therapy and home-based practice for children aged 6–10 with ASD, Down Syndrome, and Speech Sound Disorders — powered by Wav2Vec 2.0, YOLOv5, LSTM adaptive games, and Random Forest therapy recommendations on Android.</p>
-      <div class="hero-tags">
-        <span class="hero-tag">ASD</span>
-        <span class="hero-tag">Down Syndrome</span>
-        <span class="hero-tag">Speech Disorders</span>
-        <span class="hero-tag">AI Powered</span>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Intelligent Multimodal AI Platform for <span>Speech &amp; Language Therapy</span></h1>
+        <p>Voice Bridge bridges clinical therapy and home-based practice for children aged 6–10 with ASD, Down Syndrome,
+          and Speech Sound Disorders — powered by Wav2Vec 2.0, YOLOv5, LSTM adaptive games, and Random Forest therapy
+          recommendations on Android.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">ASD</span>
+          <span class="hero-tag">Down Syndrome</span>
+          <span class="hero-tag">Speech Disorders</span>
+          <span class="hero-tag">AI Powered</span>
+        </div>
+        <a href="#project-scope" class="hero-btn">
+          <span class="material-icons-round">explore</span>Learn More
+        </a>
       </div>
-      <a href="#project-scope" class="hero-btn">
-        <span class="material-icons-round">explore</span>Learn More
-      </a>
-    </div>
 
-    <!-- App splash screen in phone frame -->
-    <div class="hero-visual">
-      <div class="phone-shell">
-        <div class="phone-screen">
-          <!--
+      <!-- App splash screen in phone frame -->
+      <div class="hero-visual">
+        <div class="phone-shell">
+          <div class="phone-screen">
+            <!--
             IMAGE: splash screen
             TO CHANGE: replace src below with your file path:
               src="images/splash.png"
@@ -501,179 +1946,323 @@ footer strong{color:var(--green-light)}
             Current src points to the uploaded splash image —
             update the path to match where you place the file.
           -->
-          <img src="images/splash.jpeg" alt="Voice Bridge App"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div style="display:none;width:100%;height:100%;background:var(--green-soft);flex-direction:column;align-items:center;justify-content:center;gap:.5rem;padding:1rem;text-align:center">
-            <span class="material-icons-round" style="font-size:2.5rem;color:var(--green)">smartphone</span>
-            <p style="font-size:.62rem;color:var(--green-dark);font-weight:600">App Splash Screen<br><span style="font-weight:400;opacity:.7">Set src="images/splash.png"</span></p>
+            <img src="images/splash.jpeg" alt="Voice Bridge App"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div
+              style="display:none;width:100%;height:100%;background:var(--green-soft);flex-direction:column;align-items:center;justify-content:center;gap:.5rem;padding:1rem;text-align:center">
+              <span class="material-icons-round" style="font-size:2.5rem;color:var(--green)">smartphone</span>
+              <p style="font-size:.62rem;color:var(--green-dark);font-weight:600">App Splash Screen<br><span
+                  style="font-weight:400;opacity:.7">Set src="images/splash.png"</span></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      LITERATURE SURVEY
 ════════════════════════════════════ -->
-<section id="project-scope">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">Project Scope</div>
-      <h2 class="section-title">Literature Survey</h2>
-      <p class="section-sub">Clinical and technical foundations underpinning the Voice Bridge platform.</p>
+  <section id="project-scope">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Project Scope</div>
+        <h2 class="section-title">Literature Survey</h2>
+        <p class="section-sub">Clinical and technical foundations underpinning the Voice Bridge platform.</p>
+      </div>
+      <div class="lit-grid">
+        <div class="lit-card lc-g">
+          <div class="lit-icon"><span class="material-icons-round">public</span></div>
+          <h3>Global Prevalence</h3>
+          <p>Speech Sound Disorders affect up to 24.6% of early school-aged children. ASD affects 1 in 127 globally,
+            creating significant barriers — with critical resource shortages in regions like Sri Lanka.</p>
+        </div>
+        <div class="lit-card lc-p">
+          <div class="lit-icon"><span class="material-icons-round">mic</span></div>
+          <h3>ASR &amp; Acoustic Modeling</h3>
+          <p>Wav2Vec 2.0 processes raw waveforms via multi-layer CNN. Levenshtein CER/WER and Gestalt Pattern Matching
+            enable precise phonological error diagnosis beyond binary feedback.</p>
+        </div>
+        <div class="lit-card lc-y">
+          <div class="lit-icon"><span class="material-icons-round">visibility</span></div>
+          <h3>Computer Vision &amp; AAC</h3>
+          <p>YOLOv5 enables real-time mobile AAC. BERT-based models enable dynamic symbol-to-sentence mapping, enhancing
+            symbolic communication for non-verbal ASD children.</p>
+        </div>
+        <div class="lit-card lc-t">
+          <div class="lit-icon"><span class="material-icons-round">smart_toy</span></div>
+          <h3>Adaptive AI &amp; Recommendations</h3>
+          <p>Platforms show 20–35% engagement improvement with dynamic difficulty. LSTM networks capture session-level
+            emotional trajectories. Random Forest handles multi-label therapy recommendations robustly.</p>
+        </div>
+      </div>
     </div>
-    <div class="lit-grid">
-      <div class="lit-card lc-g">
-        <div class="lit-icon"><span class="material-icons-round">public</span></div>
-        <h3>Global Prevalence</h3>
-        <p>Speech Sound Disorders affect up to 24.6% of early school-aged children. ASD affects 1 in 127 globally, creating significant barriers — with critical resource shortages in regions like Sri Lanka.</p>
-      </div>
-      <div class="lit-card lc-p">
-        <div class="lit-icon"><span class="material-icons-round">mic</span></div>
-        <h3>ASR &amp; Acoustic Modeling</h3>
-        <p>Wav2Vec 2.0 processes raw waveforms via multi-layer CNN. Levenshtein CER/WER and Gestalt Pattern Matching enable precise phonological error diagnosis beyond binary feedback.</p>
-      </div>
-      <div class="lit-card lc-y">
-        <div class="lit-icon"><span class="material-icons-round">visibility</span></div>
-        <h3>Computer Vision &amp; AAC</h3>
-        <p>YOLOv5 enables real-time mobile AAC. BERT-based models enable dynamic symbol-to-sentence mapping, enhancing symbolic communication for non-verbal ASD children.</p>
-      </div>
-      <div class="lit-card lc-t">
-        <div class="lit-icon"><span class="material-icons-round">smart_toy</span></div>
-        <h3>Adaptive AI &amp; Recommendations</h3>
-        <p>Platforms show 20–35% engagement improvement with dynamic difficulty. LSTM networks capture session-level emotional trajectories. Random Forest handles multi-label therapy recommendations robustly.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      RESEARCH GAP
 ════════════════════════════════════ -->
-<section id="research_gap">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">Research Gap</div>
-      <h2 class="section-title">Research Problem &amp; Proposed Solution</h2>
-    </div>
-    <div class="gap-two-col">
-      <div class="gap-block">
-        <div class="gap-tag gap"><span class="material-icons-round">search</span>Research Gap</div>
-        <h3>What's Missing in Current Research</h3>
-        <p>No existing platform integrates real-time context-aware AI — deep bidirectional transformers, hybrid acoustic-linguistic engines, and YOLOv5 object recognition — into a single unified therapeutic ecosystem.</p>
-        <p>Conventional PECS systems rely on static symbol libraries. Standard speech-to-text tools offer only binary feedback without structural error categorisation or multi-disorder support on a single mobile device.</p>
+  <section id="research_gap">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Research Gap</div>
+        <h2 class="section-title">Research Problem &amp; Proposed Solution</h2>
       </div>
-      <div class="gap-block">
-        <div class="gap-tag sol"><span class="material-icons-round">lightbulb</span>Proposed Solution</div>
-        <h3>Voice Bridge Platform</h3>
-        <p>An automated, multi-modal solution combining AI-driven speech coaching, context-aware AAC, memory-driven simulations, and personalised therapy recommendations — all on a single Android platform.</p>
-        <p>Clinically validated by certified speech-language pathologists, addressing SSD, ASD, and Down Syndrome across four functional AI layers on standard Android hardware with limited connectivity.</p>
+      <div class="gap-two-col">
+        <div class="gap-block">
+          <div class="gap-tag gap"><span class="material-icons-round">search</span>Research Gap</div>
+          <h3>What's Missing in Current Research</h3>
+          <p>No existing platform integrates real-time context-aware AI — deep bidirectional transformers, hybrid
+            acoustic-linguistic engines, and YOLOv5 object recognition — into a single unified therapeutic ecosystem.
+          </p>
+          <p>Conventional PECS systems rely on static symbol libraries. Standard speech-to-text tools offer only binary
+            feedback without structural error categorisation or multi-disorder support on a single mobile device.</p>
+        </div>
+        <div class="gap-block">
+          <div class="gap-tag sol"><span class="material-icons-round">lightbulb</span>Proposed Solution</div>
+          <h3>Voice Bridge Platform</h3>
+          <p>An automated, multi-modal solution combining AI-driven speech coaching, context-aware AAC, memory-driven
+            simulations, and personalised therapy recommendations — all on a single Android platform.</p>
+          <p>Clinically validated by certified speech-language pathologists, addressing SSD, ASD, and Down Syndrome
+            across four functional AI layers on standard Android hardware with limited connectivity.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      OBJECTIVES
 ════════════════════════════════════ -->
-<section id="research_objectives">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">Objectives</div>
-      <h2 class="section-title">Research Objectives</h2>
-      <p class="section-sub">Four specialised AI subsystems targeting distinct therapeutic and developmental domains.</p>
+  <section id="research_objectives">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Objectives</div>
+        <h2 class="section-title">Research Objectives</h2>
+        <p class="section-sub">Four specialised AI subsystems targeting distinct therapeutic and developmental domains.
+        </p>
+      </div>
+      <div class="obj-list">
+        <div class="obj-item">
+          <div class="obj-num">01</div>
+          <div class="obj-content">
+            <h4>Clinical Speech Assessment</h4>
+            <p>Fine-tune Wav2Vec 2.0 XLSR on a custom paediatric dataset deployed via ONNX Runtime (8-bit quantised) for
+              high-speed phonetic scoring using Levenshtein Edit Distance and Gestalt Pattern Matching.</p>
+          </div>
+        </div>
+        <div class="obj-item">
+          <div class="obj-num">02</div>
+          <div class="obj-content">
+            <h4>Context-Aware Symbol Communication (AAC)</h4>
+            <p>Real-time object detection pipeline using custom YOLOv5 with multi-factor contextual relevance scoring
+              (Si) incorporating confidence, area ratio, and positional saliency — with BERT sentence construction for
+              non-verbal ASD children.</p>
+          </div>
+        </div>
+        <div class="obj-item">
+          <div class="obj-num">03</div>
+          <div class="obj-content">
+            <h4>Adaptive Cognitive &amp; Social Learning Games</h4>
+            <p>Memory-driven therapeutic games governed by a multi-input LSTM deep neural network with session-level
+              asymmetric frustration accumulation using an alpha (α) index integrating accuracy, response latency, and
+              developmental age scaling.</p>
+          </div>
+        </div>
+        <div class="obj-item">
+          <div class="obj-num">04</div>
+          <div class="obj-content">
+            <h4>Personalised Therapy Recommendation</h4>
+            <p>MultiOutput Random Forest classifier (n_estimators=200) for multi-label therapy activity recommendation
+              from child profiles — forwarded to Gemini AI for structured home therapy content generation.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="obj-list">
-      <div class="obj-item">
-        <div class="obj-num">01</div>
-        <div class="obj-content">
-          <h4>Clinical Speech Assessment</h4>
-          <p>Fine-tune Wav2Vec 2.0 XLSR on a custom paediatric dataset deployed via ONNX Runtime (8-bit quantised) for high-speed phonetic scoring using Levenshtein Edit Distance and Gestalt Pattern Matching.</p>
-        </div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">02</div>
-        <div class="obj-content">
-          <h4>Context-Aware Symbol Communication (AAC)</h4>
-          <p>Real-time object detection pipeline using custom YOLOv5 with multi-factor contextual relevance scoring (Si) incorporating confidence, area ratio, and positional saliency — with BERT sentence construction for non-verbal ASD children.</p>
-        </div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">03</div>
-        <div class="obj-content">
-          <h4>Adaptive Cognitive &amp; Social Learning Games</h4>
-          <p>Memory-driven therapeutic games governed by a multi-input LSTM deep neural network with session-level asymmetric frustration accumulation using an alpha (α) index integrating accuracy, response latency, and developmental age scaling.</p>
-        </div>
-      </div>
-      <div class="obj-item">
-        <div class="obj-num">04</div>
-        <div class="obj-content">
-          <h4>Personalised Therapy Recommendation</h4>
-          <p>MultiOutput Random Forest classifier (n_estimators=200) for multi-label therapy activity recommendation from child profiles — forwarded to Gemini AI for structured home therapy content generation.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      METHODOLOGY
 ════════════════════════════════════ -->
-<section id="methodology">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">Methodology</div>
-      <h2 class="section-title">System Architecture &amp; Methodology</h2>
-    </div>
-    <div class="method-wrap">
-      <div>
-        <p class="method-text" style="font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1rem">The Voice Bridge platform consists of four tightly integrated AI subsystems deployed on a single Android application, supported by a Python/Flask backend — designed for offline-first, low-connectivity operation.</p>
-        <p class="method-text" style="font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1rem">Each subsystem shares a common child profile layer, enabling cross-module personalisation and data-driven therapy adaptation across sessions.</p>
-        <div class="method-steps">
-          <div class="method-step">
-            <span class="material-icons-round">record_voice_over</span>
-            <div><strong>Speech Assessment Engine</strong><p>Wav2Vec 2.0 XLSR → ONNX Runtime (8-bit) → Three-tier scoring → Gemini TTS (&lt;1.2s)</p></div>
-          </div>
-          <div class="method-step">
-            <span class="material-icons-round">camera_enhance</span>
-            <div><strong>Context-Aware AAC</strong><p>YOLOv5 TFLite (4.2MB, mAP 92.3%) → Si scoring → BERT generation → &lt;300ms</p></div>
-          </div>
-          <div class="method-step">
-            <span class="material-icons-round">sports_esports</span>
-            <div><strong>Adaptive Therapeutic Games</strong><p>Multi-input LSTM (5-round buffer) → α frustration index → 18.3ms inference</p></div>
-          </div>
-          <div class="method-step">
-            <span class="material-icons-round">recommend</span>
-            <div><strong>Therapy Recommendation</strong><p>Random Forest (n=200) + TF-IDF/Cosine → Top-10 ~95% → Gemini content</p></div>
+  <section id="methodology">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Methodology</div>
+        <h2 class="section-title">System Architecture &amp; Methodology</h2>
+      </div>
+      <div class="method-wrap">
+        <div>
+          <p class="method-text" style="font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1rem">The
+            Voice Bridge platform consists of four tightly integrated AI subsystems deployed on a single Android
+            application, supported by a Python/Flask backend — designed for offline-first, low-connectivity operation.
+          </p>
+          <p class="method-text" style="font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1rem">Each
+            subsystem shares a common child profile layer, enabling cross-module personalisation and data-driven therapy
+            adaptation across sessions.</p>
+          <div class="method-steps">
+            <div class="method-step">
+              <span class="material-icons-round">record_voice_over</span>
+              <div><strong>Speech Assessment Engine</strong>
+                <p>Wav2Vec 2.0 XLSR → ONNX Runtime (8-bit) → Three-tier scoring → Gemini TTS (&lt;1.2s)</p>
+              </div>
+            </div>
+            <div class="method-step">
+              <span class="material-icons-round">camera_enhance</span>
+              <div><strong>Context-Aware AAC</strong>
+                <p>YOLOv5 TFLite (4.2MB, mAP 92.3%) → Si scoring → BERT generation → &lt;300ms</p>
+              </div>
+            </div>
+            <div class="method-step">
+              <span class="material-icons-round">sports_esports</span>
+              <div><strong>Adaptive Therapeutic Games</strong>
+                <p>Multi-input LSTM (5-round buffer) → α frustration index → 18.3ms inference</p>
+              </div>
+            </div>
+            <div class="method-step">
+              <span class="material-icons-round">recommend</span>
+              <div><strong>Therapy Recommendation</strong>
+                <p>Random Forest (n=200) + TF-IDF/Cosine → Top-10 ~95% → Gemini content</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="diagram-wrap">
-      
-            <img src="images/architecture.png"
-                 alt="System Architecture"
-                 style="width:100%;border-radius:12px;
+        <div class="diagram-wrap">
+
+          <img src="images/architecture.png" alt="System Architecture" style="width:100%;border-radius:12px;
                         box-shadow:0 6px 24px rgba(0,0,0,.10);
-                        border:1px solid #E0E0E0">   
-        <p class="diagram-caption">High-Level System Architecture of Voice Bridge</p>
+                        border:1px solid #E0E0E0">
+          <p class="diagram-caption">High-Level System Architecture of Voice Bridge</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      TECHNOLOGIES — real brand icons
      Style matches sample image:
      circular icon containers on white, label below, no card border
 ════════════════════════════════════ -->
-<section id="tech_used">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">Technologies</div>
-      <h2 class="section-title">Technologies Used</h2>
+  <section id="tech_used">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Technologies</div>
+        <h2 class="section-title">Technologies Used</h2>
+      </div>
+
+      <div class="tech-grid">
+
+        <!-- Kotlin -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-kotlin-plain colored"></i>
+          </div>
+          <span>Kotlin</span>
+        </div>
+
+        <!-- Python -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-python-plain colored"></i>
+          </div>
+          <span>Python</span>
+        </div>
+
+        <!-- TensorFlow -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-tensorflow-original colored"></i>
+          </div>
+          <span>TensorFlow</span>
+        </div>
+
+        <!-- PyTorch (used alongside TF for Wav2Vec) -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-pytorch-original colored"></i>
+          </div>
+          <span>PyTorch</span>
+        </div>
+
+        <!-- Docker -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-docker-plain colored"></i>
+          </div>
+          <span>Docker</span>
+        </div>
+
+        <!-- Firebase -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-firebase-plain colored"></i>
+          </div>
+          <span>Firebase</span>
+        </div>
+
+        <!-- Google Cloud -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-googlecloud-plain colored"></i>
+          </div>
+          <span>Google Cloud</span>
+        </div>
+
+        <!-- Android -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-android-plain colored"></i>
+          </div>
+          <span>Android</span>
+        </div>
+
+        <!-- ONNX — no devicon available, use official SVG via img -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <img src="https://raw.githubusercontent.com/onnx/onnx/main/docs/onnx-horizontal-color.png" alt="ONNX"
+              style="width:60px;height:auto;object-fit:contain"
+              onerror="this.outerHTML='<span style=\'font-size:.75rem;font-weight:800;color:#005CED\'>ONNX</span>'" />
+          </div>
+          <span>ONNX Runtime</span>
+        </div>
+
+        <!-- Hugging Face (Wav2Vec model hub) -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <!-- Hugging Face logo as emoji + colour - no devicon available -->
+            <span style="font-size:2.4rem;line-height:1">🤗</span>
+          </div>
+          <span>Hugging Face</span>
+        </div>
+
+        <!-- Flask -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-flask-original" style="font-size:2.4rem;color:#000"></i>
+          </div>
+          <span>Flask</span>
+        </div>
+
+        <!-- Scikit-learn (Random Forest) -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <i class="devicon-scikitlearn-plain colored"></i>
+          </div>
+          <span>Scikit-learn</span>
+        </div>
+
+        <!-- Google Colab (model training) -->
+        <div class="tech-item">
+          <div class="tech-circle">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg" alt="Colab"
+              style="width:52px;height:auto"
+              onerror="this.outerHTML='<span style=\'font-size:.7rem;font-weight:800;color:#F9AB00\'>Colab</span>'" />
+          </div>
+          <span>Google Colab</span>
+        </div>
+
+      </div>
     </div>
+  </section>
 
     <div class="tech-grid">
 
@@ -799,162 +2388,230 @@ footer strong{color:var(--green-light)}
      TO CHANGE: in CSS find ".parallax-band { background-image: url('...') }"
      and replace with url('images/parallax-bg.jpg')
 ════════════════════════════════════ -->
-<div class="parallax-band">
-  <div class="parallax-content">
-    <h2>Bridging Clinical Therapy &amp; Home-Based Practice</h2>
-    <p>A clinically validated, AI-driven platform enabling children with speech and language disorders to receive structured therapeutic support anywhere, anytime.</p>
-    <div class="parallax-stats">
-      <div class="p-stat"><div class="num">94.72%</div><div class="lbl">Speech Accuracy</div></div>
-      <div class="p-stat"><div class="num">92.3%</div><div class="lbl">mAP YOLOv5</div></div>
-      <div class="p-stat"><div class="num">~95%</div><div class="lbl">Top-10 Therapy Hit</div></div>
-      <div class="p-stat"><div class="num">18.3ms</div><div class="lbl">On-Device Inference</div></div>
+  <div class="parallax-band">
+    <div class="parallax-content">
+      <h2>Bridging Clinical Therapy &amp; Home-Based Practice</h2>
+      <p>A clinically validated, AI-driven platform enabling children with speech and language disorders to receive
+        structured therapeutic support anywhere, anytime.</p>
+      <div class="parallax-stats">
+        <div class="p-stat">
+          <div class="num">94.72%</div>
+          <div class="lbl">Speech Accuracy</div>
+        </div>
+        <div class="p-stat">
+          <div class="num">92.3%</div>
+          <div class="lbl">mAP YOLOv5</div>
+        </div>
+        <div class="p-stat">
+          <div class="num">~95%</div>
+          <div class="lbl">Top-10 Therapy Hit</div>
+        </div>
+        <div class="p-stat">
+          <div class="num">18.3ms</div>
+          <div class="lbl">On-Device Inference</div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      MILESTONES — CocoRemedy timeline style
      (single left-side vertical line, diamond dot,
       bold date chip, title, marks + progress bar)
 ════════════════════════════════════ -->
-<!-- MILESTONES -->
-<section id="milestones">
-  <div class="container">
-    <div class="section-header center">
-      <div class="section-eyebrow center-ey">Milestones</div>
-      <h2 class="section-title">Timeline in Brief</h2>
-      <p class="section-sub">Key assessments and research checkpoints throughout the project lifecycle.</p>
+  <!-- MILESTONES -->
+  <section id="milestones">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow center-ey">Milestones</div>
+        <h2 class="section-title">Timeline in Brief</h2>
+        <p class="section-sub">Key assessments and research checkpoints throughout the project lifecycle.</p>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+          <div class="tl-card">
+            <div class="tl-period"><span class="material-icons-round">event</span>Semester 1</div>
+            <h4>Project Proposal</h4>
+            <p>Initial research proposal presenting the literature survey on ASR, AAC, adaptive AI, and ML
+              recommendations; research gap identification; and proposed four-component system architecture.</p>
+            <div class="tl-footer">
+              <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 20</span>
+              <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 1</span>
+              <span class="tl-status st-done">✓ Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+          <div class="tl-card">
+            <div class="tl-period"><span class="material-icons-round">event</span>Semester 1</div>
+            <h4>Progress Presentation 1</h4>
+            <p>First review covering individual component architecture, early prototypes for all four subsystems, and
+              initial dataset collection for Wav2Vec 2.0 fine-tuning and YOLOv5 model training.</p>
+            <div class="tl-footer">
+              <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 15</span>
+              <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 1</span>
+              <span class="tl-status st-done">✓ Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+          <div class="tl-card">
+            <div class="tl-period"><span class="material-icons-round">event</span>Semester 2</div>
+            <h4>Progress Presentation 2</h4>
+            <p>90%+ system completion — Wav2Vec (94.72%), YOLOv5 AAC (92.3%), adaptive games (18.3ms), and therapy
+              recommender (~95% Top-10) all integrated and experimentally validated with preliminary user testing.</p>
+            <div class="tl-footer">
+              <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 15</span>
+              <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>Mid Sem 2</span>
+              <span class="tl-status st-now">● Current</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+          <div class="tl-card">
+            <div class="tl-period"><span class="material-icons-round">event</span>Semester 2</div>
+            <h4>Final Assessment</h4>
+            <p>Complete system evaluation — clinical usability testing at selected speech therapy clinics, SLP
+              validation by certified pathologists, and comprehensive research presentation to a panel of academic
+              examiners.</p>
+            <div class="tl-footer">
+              <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 30</span>
+              <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 2</span>
+              <span class="tl-status st-soon">○ Upcoming</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+          <div class="tl-card">
+            <div class="tl-period"><span class="material-icons-round">event</span>Semester 2</div>
+            <h4>Viva</h4>
+            <p>Individual oral defense before a panel of academic examiners — demonstrating deep understanding of
+              methodology, results, clinical implications, individual contributions, and future research directions.</p>
+            <div class="tl-footer">
+              <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 20</span>
+              <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 2</span>
+              <span class="tl-status st-soon">○ Upcoming</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <div class="timeline-container">
-      <div class="timeline-line"></div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-connector"></div>
-        <div class="tl-card">
-          <div class="tl-period"><span class="material-icons-round">event</span>Semester 1</div>
-          <h4>Project Proposal</h4>
-          <p>Initial research proposal presenting the literature survey on ASR, AAC, adaptive AI, and ML recommendations; research gap identification; and proposed four-component system architecture.</p>
-          <div class="tl-footer">
-            <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 20</span>
-            <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 1</span>
-            <span class="tl-status st-done">✓ Completed</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-connector"></div>
-        <div class="tl-card">
-          <div class="tl-period"><span class="material-icons-round">event</span>Semester 1</div>
-          <h4>Progress Presentation 1</h4>
-          <p>First review covering individual component architecture, early prototypes for all four subsystems, and initial dataset collection for Wav2Vec 2.0 fine-tuning and YOLOv5 model training.</p>
-          <div class="tl-footer">
-            <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 15</span>
-            <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 1</span>
-            <span class="tl-status st-done">✓ Completed</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-connector"></div>
-        <div class="tl-card">
-          <div class="tl-period"><span class="material-icons-round">event</span>Semester 2</div>
-          <h4>Progress Presentation 2</h4>
-          <p>90%+ system completion — Wav2Vec (94.72%), YOLOv5 AAC (92.3%), adaptive games (18.3ms), and therapy recommender (~95% Top-10) all integrated and experimentally validated with preliminary user testing.</p>
-          <div class="tl-footer">
-            <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 15</span>
-            <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>Mid Sem 2</span>
-            <span class="tl-status st-now">● Current</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-connector"></div>
-        <div class="tl-card">
-          <div class="tl-period"><span class="material-icons-round">event</span>Semester 2</div>
-          <h4>Final Assessment</h4>
-          <p>Complete system evaluation — clinical usability testing at selected speech therapy clinics, SLP validation by certified pathologists, and comprehensive research presentation to a panel of academic examiners.</p>
-          <div class="tl-footer">
-            <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 30</span>
-            <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 2</span>
-            <span class="tl-status st-soon">○ Upcoming</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-connector"></div>
-        <div class="tl-card">
-          <div class="tl-period"><span class="material-icons-round">event</span>Semester 2</div>
-          <h4>Viva</h4>
-          <p>Individual oral defense before a panel of academic examiners — demonstrating deep understanding of methodology, results, clinical implications, individual contributions, and future research directions.</p>
-          <div class="tl-footer">
-            <span class="tl-marks"><span class="material-icons-round">grade</span>Marks Allocated: 20</span>
-            <span class="tl-deadline"><span class="material-icons-round">calendar_today</span>End of Sem 2</span>
-            <span class="tl-status st-soon">○ Upcoming</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      DOCUMENTS
 ════════════════════════════════════ -->
-<section id="downloads">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">Downloads</div>
-      <h2 class="section-title">Documents</h2>
-      <p class="section-sub">Please find all documents related to this project below.</p>
-    </div>
+  <section id="downloads">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Downloads</div>
+        <h2 class="section-title">Documents</h2>
+        <p class="section-sub">Please find all documents related to this project below.</p>
+      </div>
 
-    <div class="dl-section-head"><span class="material-icons-round">assignment</span>Project Charter</div>
-    <div class="dl-row">
-      <div class="dl-left"><span class="material-icons-round">description</span><div class="dl-info"><h5>Project Charter Document</h5><span>Group · Semester 1</span></div></div>
-      <div class="dl-btns"><a class="dl-btn btn-disabled"><span class="material-icons-round">schedule</span>Coming Soon</a></div>
-    </div>
+      <div class="dl-section-head">
+        <span class="material-icons-round">assignment</span>Project Charter
+      </div>
+      <div class="dl-row">
+        <div class="dl-left">
+          <span class="material-icons-round">description</span>
+          <div class="dl-info">
+            <h5>Project Charter Document</h5>
+            <span>Group · Semester 1</span>
+          </div>
+        </div>
+        <div class="dl-btns">
+          <a href="https://mysliit-my.sharepoint.com/:f:/g/personal/it22354242_my_sliit_lk/IgBQ6z1Qj88nRpwXp6MLKNdIAXUUdD3QNUrN2ZmDkB4NDbc?e=Zz0eJ6"
+            target="_blank" class="dl-btn btn-view">
+            <span class="material-icons-round">open_in_new</span> View Folder
+          </a>
+        </div>
+      </div>
 
-    <div class="dl-section-head"><span class="material-icons-round">edit_document</span>Project Proposal</div>
-    <div class="dl-row">
-      <div class="dl-left"><span class="material-icons-round">description</span><div class="dl-info"><h5>Research Proposal Document</h5><span>Group · Semester 1</span></div></div>
-      <div class="dl-btns"><a class="dl-btn btn-disabled"><span class="material-icons-round">schedule</span>Coming Soon</a></div>
-    </div>
+      <div class="dl-section-head">
+        <span class="material-icons-round">lightbulb</span>Proposal Document
+      </div>
+      <div class="dl-row">
+        <div class="dl-left">
+          <span class="material-icons-round">description</span>
+          <div class="dl-info">
+            <h5>Research Proposal Document</h5>
+            <span>Group · Semester 1</span>
+          </div>
+        </div>
+        <div class="dl-btns">
+          <a href="https://mysliit-my.sharepoint.com/:f:/g/personal/it22354242_my_sliit_lk/IgCvtaTtiNEuTYacdT1nDtK6AYvFMS6J6qoeXwBUTdAmSvA?e=0PC2hp"
+            target="_blank" class="dl-btn btn-view">
+            <span class="material-icons-round">visibility</span> View Proposal
+          </a>
+        </div>
+      </div>
 
-    <div class="dl-section-head"><span class="material-icons-round">checklist</span>Check List Documents</div>
-    <div class="dl-row">
-      <div class="dl-left"><span class="material-icons-round">description</span><div class="dl-info"><h5>Assessment &amp; Progress Checklists</h5><span>Individual · Sem 1 &amp; Sem 2</span></div></div>
-      <div class="dl-btns"><a class="dl-btn btn-disabled"><span class="material-icons-round">schedule</span>Coming Soon</a></div>
-    </div>
+      <div class="dl-section-head">
+        <span class="material-icons-round">checklist</span>Check List Documents
+      </div>
+      <div class="dl-row">
+        <div class="dl-left">
+          <span class="material-icons-round">description</span>
+          <div class="dl-info">
+            <h5>Assessment &amp; Progress Checklists</h5>
+            <span>Individual · Sem 1 &amp; Sem 2</span>
+          </div>
+        </div>
+        <div class="dl-btns">
+          <a href="https://mysliit-my.sharepoint.com/:f:/g/personal/it22354242_my_sliit_lk/IgDQc9JUMJh9QLdny-B-HCK7ActCrdx69ZM8O-roliFC37A?e=mPvoXB"
+            target="_blank" class="dl-btn btn-view">
+            <span class="material-icons-round">download_done</span> Access Checklists
+          </a>
+        </div>
+      </div>
 
-    <div class="dl-section-head"><span class="material-icons-round">article</span>Research Paper</div>
-    <div class="dl-row">
-      <div class="dl-left"><span class="material-icons-round">description</span><div class="dl-info"><h5>ICSCSS 2026 Conference Paper</h5><span>Group · Published 2026</span></div></div>
-      <div class="dl-btns"><a href="#" class="dl-btn btn-teal"><span class="material-icons-round">open_in_new</span>View Paper</a></div>
-    </div>
-
-    <div class="dl-section-head"><span class="material-icons-round">menu_book</span>Final Report</div>
-    <div class="dl-row">
-      <div class="dl-left"><span class="material-icons-round">description</span><div class="dl-info"><h5>Final Research Report</h5><span>Pending · Semester 2</span></div></div>
-      <div class="dl-btns">
-        <a href="#" class="dl-btn btn-disabled"><span class="material-icons-round">person</span>Individual Report</a>
-        <a href="#" class="dl-btn btn-disabled"><span class="material-icons-round">groups</span>Group Report</a>
+      <div class="dl-section-head">
+        <span class="material-icons-round">menu_book</span>Final Report
+      </div>
+      <div class="dl-row">
+        <div class="dl-left">
+          <span class="material-icons-round">description</span>
+          <div class="dl-info">
+            <h5>Final Research Report</h5>
+            <span>Pending · Semester 2</span>
+          </div>
+        </div>
+        <div class="dl-btns" style="border: none;">
+          <a href="https://mysliit-my.sharepoint.com/:f:/g/personal/it22354242_my_sliit_lk/IgBJF_TI-C4VS78rzsz_-pEjASKitAkza4DQSWIldsVMVLE?e=KlDbKZ"
+            target="_blank" class="dl-btn btn-report-ind">
+            <span class="material-icons-round">person</span> Individual
+          </a>
+          </div>
+          <div class="dl-btns" style="border: none;">
+          <a href="https://mysliit-my.sharepoint.com/:f:/g/personal/it22354242_my_sliit_lk/IgBVGvxJzHn0TqGYAYU_YehWAWGC0urvOJsR9oQvBfARkRA?e=Nb6UTK"
+            target="_blank" class="dl-btn btn-report-grp">
+            <span class="material-icons-round">groups</span> Group
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      PRESENTATIONS
 ════════════════════════════════════ -->
 <section id="presentations">
@@ -991,124 +2648,129 @@ footer strong{color:var(--green-light)}
           <p>90%+ platform — all four AI components integrated with validated performance metrics.</p>
             <a href="https://mysliit-my.sharepoint.com/:p:/g/personal/it22354242_my_sliit_lk/IQBkWC1R-AwFQpIXDB0i67MPAbAlhwyYdEic-Q4xbc8GTIw?e=Oi8vXj" class="dl-btn btn-primary" target="_blank"><span class="material-icons-round">slideshow</span>View Slides</a>
         </div>
-      </div>
-      <div class="pres-card">
-        <div class="pres-thumb pt-t"><span class="material-icons-round">emoji_events</span></div>
-        <div class="pres-body">
-          <div class="pres-date"><span class="material-icons-round">event</span>Semester 2</div>
-          <h4>Final Presentation</h4>
-          <p>Complete system showcase with clinical validation, usability results and future roadmap.</p>
-          <a class="dl-btn btn-disabled"><span class="material-icons-round">pending</span>Pending</a>
+        <div class="pres-card">
+          <div class="pres-thumb pt-y"><span class="material-icons-round">rocket_launch</span></div>
+          <div class="pres-body">
+            <div class="pres-date"><span class="material-icons-round">event</span>Semester 2</div>
+            <h4>Progress Presentation 2</h4>
+            <p>90%+ platform — all four AI components integrated with validated performance metrics.</p>
+            <a href="#" class="dl-btn btn-primary"><span class="material-icons-round">slideshow</span>View Slides</a>
+          </div>
+        </div>
+        <div class="pres-card">
+          <div class="pres-thumb pt-t"><span class="material-icons-round">emoji_events</span></div>
+          <div class="pres-body">
+            <div class="pres-date"><span class="material-icons-round">event</span>Semester 2</div>
+            <h4>Final Presentation</h4>
+            <p>Complete system showcase with clinical validation, usability results and future roadmap.</p>
+            <a class="dl-btn btn-disabled"><span class="material-icons-round">pending</span>Pending</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      ABOUT — photo-first card style (Dr. Janaka reference)
 ════════════════════════════════════ -->
-<section id="about">
-  <div class="container">
-    <div class="section-header center">
-      <div class="section-eyebrow c">About Us</div>
-      <h2 class="section-title">Meet Our Team</h2>
-      <p class="section-sub">Department of Computer Science and Software Engineering · SLIIT, Malabe, Sri Lanka</p>
-    </div>
-
-    <!-- SUPERVISORS -->
-    <div class="sub-head"><span class="material-icons-round">supervisor_account</span>Supervisors</div>
-    <div class="sv-grid">
-
-      <div class="sv-card">
-        <div class="sv-photo-wrap">
-         <img src="images/team/supervisor.jpeg" alt="Prof. Samantha">
-        </div>
-        <div class="sv-info">
-          <div class="sv-badge main">Supervisor</div>
-          <h4>Prof. Samantha Thelijjagoda</h4>
-          <div class="sv-dept-label">Department</div>
-          <p class="sv-dept">Computer Systems Engineering · SLIIT</p>
-          <a href="mailto:samantha.t@sliit.lk" class="sv-email">samantha.t@sliit.lk</a>
-        </div>
+  <section id="about">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow c">About Us</div>
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-sub">Department of Computer Science and Software Engineering · SLIIT, Malabe, Sri Lanka</p>
       </div>
 
-      <div class="sv-card">
-        <div class="sv-photo-wrap">
-           <img src="images/team/cosupervisor.jpeg" alt="Ms. Poojani">
-        </div>
-        <div class="sv-info">
-          <div class="sv-badge co">Co-Supervisor</div>
-          <h4>Ms. Poojani Gunathilake</h4>
-          <div class="sv-dept-label">Department</div>
-          <p class="sv-dept">Computer Science &amp; Software Engineering · SLIIT</p>
-          <a href="mailto:poojani.g@sliit.lk" class="sv-email">poojani.g@sliit.lk</a>
-        </div>
-      </div>
+      <!-- SUPERVISORS -->
+      <div class="sub-head"><span class="material-icons-round">supervisor_account</span>Supervisors</div>
+      <div class="sv-grid">
 
-      <div class="sv-card">
-        <div class="sv-photo-wrap">
+        <div class="sv-card">
+          <div class="sv-photo-wrap">
+            <img src="images/team/supervisor.jpeg" alt="Prof. Samantha">
+          </div>
+          <div class="sv-info">
+            <div class="sv-badge main">Supervisor</div>
+            <h4>Prof. Samantha Thelijjagoda</h4>
+            <div class="sv-dept-label">Department</div>
+            <p class="sv-dept">Computer Systems Engineering · SLIIT</p>
+            <a href="mailto:samantha.t@sliit.lk" class="sv-email">samantha.t@sliit.lk</a>
+          </div>
+        </div>
+
+        <div class="sv-card">
+          <div class="sv-photo-wrap">
+            <img src="images/team/cosupervisor.jpeg" alt="Ms. Poojani">
+          </div>
+          <div class="sv-info">
+            <div class="sv-badge co">Co-Supervisor</div>
+            <h4>Ms. Poojani Gunathilake</h4>
+            <div class="sv-dept-label">Department</div>
+            <p class="sv-dept">Computer Science &amp; Software Engineering · SLIIT</p>
+            <a href="mailto:poojani.g@sliit.lk" class="sv-email">poojani.g@sliit.lk</a>
+          </div>
+        </div>
+
+        <div class="sv-card">
+          <div class="sv-photo-wrap">
             <img src="images/team/external.jpeg" alt="Ms. Dulangi">
+          </div>
+          <div class="sv-info">
+            <div class="sv-badge ext">External Supervisor</div>
+            <h4>Ms. Dulangi Pandithasekara</h4>
+            <div class="sv-dept-label">Specialisation</div>
+            <p class="sv-dept">Speech and Language Pathologist · Clinical Specialist</p>
+            <span class="sv-email" style="color:var(--muted);cursor:default">Clinical Validation Partner</span>
+          </div>
         </div>
-        <div class="sv-info">
-          <div class="sv-badge ext">External Supervisor</div>
-          <h4>Ms. Dulangi Pandithasekara</h4>
-          <div class="sv-dept-label">Specialisation</div>
-          <p class="sv-dept">Speech and Language Pathologist · Clinical Specialist</p>
-          <span class="sv-email" style="color:var(--muted);cursor:default">Clinical Validation Partner</span>
-        </div>
+
       </div>
 
-    </div>
+      <!-- TEAM MEMBERS -->
+      <div class="sub-head"><span class="material-icons-round">groups</span>Research Team Members</div>
+      <div class="team-grid">
 
-    <!-- TEAM MEMBERS -->
-    <div class="sub-head"><span class="material-icons-round">groups</span>Research Team Members</div>
-    <div class="team-grid">
-
-      <div class="member-card">
-        <div class="member-photo-wrap">
+        <div class="member-card">
+          <div class="member-photo-wrap">
             <img src="images/team/chirathi.jpeg" alt="Chirathi Somadasa">
-          <div class="member-photo-placeholder mp-g">CS</div>
+            <div class="member-photo-placeholder mp-g">CS</div>
+          </div>
+          <div class="member-info">
+            <h4>Chirathi Somadasa</h4>
+            <div class="m-role">Group Leader</div>
+            <div class="m-id">IT22354242</div>
+            <a href="mailto:it22354242@my.sliit.lk">it22354242@my.sliit.lk</a>
+          </div>
         </div>
-        <div class="member-info">
-          <h4>Chirathi Somadasa</h4>
-          <div class="m-role">Group Leader</div>
-          <div class="m-id">IT22354242</div>
-          <a href="mailto:it22354242@my.sliit.lk">it22354242@my.sliit.lk</a>
-        </div>
-      </div>
 
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <!--
-            IMAGE: Piumi's photo
-            REPLACE with: <img src="images/team/piumi.jpg" alt="Piumi Balasooriya">
-          -->
-          <div class="member-photo-placeholder mp-p">PB</div>
+        <div class="member-card">
+          <div class="member-photo-wrap">
+            <img src="images/team/piumi.jpg" alt="Piumi Balasooriya">
+            <div class="member-photo-placeholder mp-p">PB</div>
+          </div>
+          <div class="member-info">
+            <h4>Piumi Balasooriya</h4>
+            <div class="m-role">Group member</div>
+            <div class="m-id">IT22927248</div>
+            <a href="mailto:it22927248@my.sliit.lk">it22927248@my.sliit.lk</a>
+          </div>
         </div>
-        <div class="member-info">
-          <h4>Piumi Balasooriya</h4>
-          <div class="m-role">Group member</div>
-          <div class="m-id">IT22927248</div>
-          <a href="mailto:it22927248@my.sliit.lk">it22927248@my.sliit.lk</a>
-        </div>
-      </div>
 
-      <div class="member-card">
-        <div class="member-photo-wrap">
-          <!--
+        <div class="member-card">
+          <div class="member-photo-wrap">
+            <!--
             IMAGE: Hirushini's photo
             REPLACE with: <img src="images/team/hirushini.jpg" alt="Hirushini Chandrasoma">
           -->
-          <div class="member-photo-placeholder mp-y">HC</div>
+            <div class="member-photo-placeholder mp-y">HC</div>
+          </div>
+          <div class="member-info">
+            <h4>Hirushini Chandrasoma</h4>
+            <div class="m-role">Group member</div>
+            <div class="m-id">IT22347312</div>
+            <a href="mailto:it22347312@my.sliit.lk">it22347312@my.sliit.lk</a>
+          </div>
         </div>
-        <div class="member-info">
-          <h4>Hirushini Chandrasoma</h4>
-          <div class="m-role">Group member</div>
-          <div class="m-id">IT22347312</div>
-          <a href="mailto:it22347312@my.sliit.lk">it22347312@my.sliit.lk</a>
-        </div>
-      </div>
 
       <div class="member-card">
         <div class="member-photo-wrap">
@@ -1121,106 +2783,122 @@ footer strong{color:var(--green-light)}
           <div class="m-id">IT22309624</div>
           <a href="mailto:it22309624@my.sliit.lk">it22309624@my.sliit.lk</a>
         </div>
+
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      CONTACT
 ════════════════════════════════════ -->
-<section id="contact">
-  <div class="container">
-    <div class="section-header center">
-      <div class="section-eyebrow c">Contact Us</div>
-      <h2 class="section-title">Get in Touch</h2>
-      <p class="section-sub">Interested in Voice Bridge, research collaboration, or clinical validation? We'd love to hear from you.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Contact Details</h3>
-        <div class="ci-item">
-          <span class="material-icons-round">location_city</span>
-          <div><h5>Institution</h5><p>Sri Lanka Institute of Information Technology (SLIIT)<br>Faculty of Computing, New Kandy Road, Malabe, Sri Lanka</p></div>
+  <section id="contact">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow c">Contact Us</div>
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-sub">Interested in Voice Bridge, research collaboration, or clinical validation? We'd love to
+          hear from you.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Contact Details</h3>
+          <div class="ci-item">
+            <span class="material-icons-round">location_city</span>
+            <div>
+              <h5>Institution</h5>
+              <p>Sri Lanka Institute of Information Technology (SLIIT)<br>Faculty of Computing, New Kandy Road, Malabe,
+                Sri Lanka</p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <span class="material-icons-round">email</span>
+            <div>
+              <h5>Research Team</h5>
+              <p><a href="mailto:it22354242@my.sliit.lk">it22354242@my.sliit.lk</a> — Chirathi Somadasa<br>
+                <a href="mailto:it22927248@my.sliit.lk">it22927248@my.sliit.lk</a> — Piumi Balasooriya<br>
+                <a href="mailto:it22309624@my.sliit.lk">it22309624@my.sliit.lk</a> — Thamindu Dilhara<br>
+              </p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <span class="material-icons-round">supervisor_account</span>
+            <div>
+              <h5>Supervisors</h5>
+              <p><a href="mailto:samantha.t@sliit.lk">samantha.t@sliit.lk</a><br><a
+                  href="mailto:poojani.g@sliit.lk">poojani.g@sliit.lk</a></p>
+            </div>
+          </div>
         </div>
-        <div class="ci-item">
-          <span class="material-icons-round">email</span>
-          <div><h5>Research Team</h5><p><a href="mailto:it22354242@my.sliit.lk">it22354242@my.sliit.lk</a> — Chirathi Somadasa<br>
-              <a href="mailto:it22309624@my.sliit.lk">it22309624@my.sliit.lk</a> — Thamindu Dilhara<br>
-           </p></div>
-        </div>
-        <div class="ci-item">
-          <span class="material-icons-round">supervisor_account</span>
-          <div><h5>Supervisors</h5><p><a href="mailto:samantha.t@sliit.lk">samantha.t@sliit.lk</a><br><a href="mailto:poojani.g@sliit.lk">poojani.g@sliit.lk</a></p></div>
+        <div class="contact-form-wrap">
+          <h3>Send a Message</h3>
+          <div class="form-row">
+            <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name" /></div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com" />
+            </div>
+          </div>
+          <div class="form-group"><label>Message or Query</label><textarea
+              placeholder="Your message here..."></textarea></div>
+          <button type="button" class="form-submit"><span class="material-icons-round">send</span>Submit</button>
         </div>
       </div>
-      <div class="contact-form-wrap">
-        <h3>Send a Message</h3>
-        <div class="form-row">
-          <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"/></div>
-          <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
-        </div>
-        <div class="form-group"><label>Message or Query</label><textarea placeholder="Your message here..."></textarea></div>
-        <button type="button" class="form-submit"><span class="material-icons-round">send</span>Submit</button>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <p>© 2026 <strong>Voice Bridge</strong> — Intelligent Multimodal AI Platform for Speech &amp; Language Therapy · SLIIT Research</p>
-</footer>
+  <footer>
+    <p>© 2026 <strong>Voice Bridge</strong> — Intelligent Multimodal AI Platform for Speech &amp; Language Therapy ·
+      SLIIT Research</p>
+  </footer>
 
-<!-- ═══════════════════════════════════
+  <!-- ═══════════════════════════════════
      SCRIPTS
 ════════════════════════════════════ -->
-<script>
-/* ── Diagram click-to-upload ── */
-function uploadDiagram(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const box = document.getElementById('diagBox');
-    const img = document.getElementById('diagImg');
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    box.querySelectorAll('.du-icon,.du-title,.du-hint').forEach(el => el.style.display = 'none');
-    box.style.border = 'none';
-    box.style.background = 'transparent';
-    box.style.padding = '0';
-    box.style.minHeight = 'unset';
-  };
-  reader.readAsDataURL(file);
-}
-
-/* ── Scroll-triggered timeline animation ── */
-const tlItems = document.querySelectorAll('.tl-item');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      // Adds the 'visible' class with a slight delay for a cascading effect
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target); // Optional: stops observing once animated
+  <script>
+    /* ── Diagram click-to-upload ── */
+    function uploadDiagram(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const box = document.getElementById('diagBox');
+        const img = document.getElementById('diagImg');
+        img.src = ev.target.result;
+        img.style.display = 'block';
+        box.querySelectorAll('.du-icon,.du-title,.du-hint').forEach(el => el.style.display = 'none');
+        box.style.border = 'none';
+        box.style.background = 'transparent';
+        box.style.padding = '0';
+        box.style.minHeight = 'unset';
+      };
+      reader.readAsDataURL(file);
     }
-  });
-}, { threshold: 0.12 });
 
-tlItems.forEach(item => observer.observe(item));
+    /* ── Scroll-triggered timeline animation ── */
+    const tlItems = document.querySelectorAll('.tl-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Adds the 'visible' class with a slight delay for a cascading effect
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target); // Optional: stops observing once animated
+        }
+      });
+    }, { threshold: 0.12 });
 
-/* ── Active nav highlight on scroll ── */
-const sections = document.querySelectorAll('section[id]');
-const navAs    = document.querySelectorAll('.nav-links>li>a[href^="#"]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) current = s.id; });
-  navAs.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-}, { passive: true });
-</script>
+    tlItems.forEach(item => observer.observe(item));
+
+    /* ── Active nav highlight on scroll ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links>li>a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) current = s.id; });
+      navAs.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    }, { passive: true });
+  </script>
 
 </body>
+
 </html>
