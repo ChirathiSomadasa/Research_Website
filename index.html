@@ -193,12 +193,6 @@
       align-items: center
     }
 
-    /* IMAGE: hero-bg
-   HOW TO CHANGE: replace the URL inside url('...') with your local path:
-   url('images/hero-bg.jpg')
-   The photo should show a speech therapist communicating with a child.
-   Current placeholder: free Unsplash photo (therapist + child).
-*/
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -350,11 +344,6 @@
       aspect-ratio: .47
     }
 
-    /* IMAGE: splash screen
-   HOW TO CHANGE: replace src with your splash screen file path:
-   src="images/splash.png"
-   Portrait screenshot (~9:19 ratio) works best inside this phone frame.
-*/
     .phone-screen img {
       width: 100%;
       height: 100%;
@@ -362,11 +351,6 @@
       display: block
     }
 
-    /* ─────────────────────────────────────────
-   PARALLAX BAND  (between Tech & Milestones)
-   IMAGE: parallax-bg
-   HOW TO CHANGE: replace url('...') with url('images/parallax-bg.jpg')
-───────────────────────────────────────── */
     .parallax-band {
       height: 320px;
       background-image: url('images/parallax-bg.jpg');
@@ -784,14 +768,6 @@
       text-align: center
     }
 
-    /* IMAGE: system overview diagram
-   HOW TO CHANGE — Option 1 (recommended, hard-coded):
-     Replace the entire .diagram-upload div below with:
-     <img src="images/architecture.jpg" alt="System Architecture" style="width:100%;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.10);border:1px solid #E0E0E0">
-
-   Option 2 (click-to-upload at runtime, already wired up):
-     Just click the dashed box when viewing in a browser to pick your file.
-*/
     .diagram-upload {
       border-radius: var(--r);
       border: 2px dashed var(--green);
@@ -859,8 +835,7 @@
     }
 
     /* ─────────────────────────────────────────
-   TECHNOLOGIES — real devicon logos
-   Style: circular icon + label, same as sample image
+   TECHNOLOGIES 
 ───────────────────────────────────────── */
     #tech_used {
       background: #fff;
@@ -1363,11 +1338,6 @@
       margin-bottom: .9rem
     }
 
-    /* ─────────────────────────────────────────
-   ABOUT — team members with prominent photos
-   Photo card: large image on top, info below
-   (based on sample image 2 — Dr. Janaka card style)
-───────────────────────────────────────── */
     #about {
       background: #fff
     }
@@ -1418,14 +1388,6 @@
       display: block
     }
 
-    /* IMAGE: supervisor photos
-   HOW TO CHANGE: replace src in each <img> tag inside .sv-photo-wrap
-   with your local file path, e.g.:
-     src="images/team/supervisor.jpg"
-     src="images/team/cosupervisor.jpg"
-     src="images/team/external.jpg"
-   Image should be portrait orientation for best result.
-*/
     .sv-photo-wrap img {
       width: 100%;
       height: 100%;
@@ -1538,14 +1500,6 @@
       position: relative
     }
 
-    /* IMAGE: team member photos
-   HOW TO CHANGE: replace src in each <img> tag below with local paths:
-     src="images/team/chirathi.jpg"
-     src="images/team/piumi.jpg"
-     src="images/team/hirushini.jpg"
-     src="images/team/thamindu.jpg"
-   Passport-style photos (face clearly visible) work best.
-*/
     .member-photo-wrap img {
       width: 100%;
       height: 100%;
@@ -1908,14 +1862,6 @@
      HERO
 ════════════════════════════════════ -->
   <section id="home">
-    <!--
-    IMAGE: hero-bg
-    The .hero-bg div uses a CSS background-image (set in the <style> above).
-    TO CHANGE TO YOUR OWN PHOTO:
-      In the CSS, find ".hero-bg { background-image: url('...') }"
-      and replace the URL with:  url('images/hero-bg.jpg')
-    Use a photo of a speech therapist communicating with a child.
-  -->
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-inner">
@@ -1939,14 +1885,6 @@
       <div class="hero-visual">
         <div class="phone-shell">
           <div class="phone-screen">
-            <!--
-            IMAGE: splash screen
-            TO CHANGE: replace src below with your file path:
-              src="images/splash.png"
-            Portrait screenshot (~9:19 ratio).
-            Current src points to the uploaded splash image —
-            update the path to match where you place the file.
-          -->
             <img src="images/splash.jpeg" alt="Voice Bridge App"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
             <div
@@ -2139,9 +2077,7 @@
   </section>
 
   <!-- ═══════════════════════════════════
-     TECHNOLOGIES — real brand icons
-     Style matches sample image:
-     circular icon containers on white, label below, no card border
+     TECHNOLOGIES 
 ════════════════════════════════════ -->
   <section id="tech_used">
     <div class="container">
@@ -2277,10 +2213,6 @@
 
 <!-- ═══════════════════════════════════
      PARALLAX BAND
-     Placed between Technologies and Milestones.
-     IMAGE: parallax-bg
-     TO CHANGE: in CSS find ".parallax-band { background-image: url('...') }"
-     and replace with url('images/parallax-bg.jpg')
 ════════════════════════════════════ -->
   <div class="parallax-band">
     <div class="parallax-content">
@@ -2309,11 +2241,8 @@
   </div>
 
   <!-- ═══════════════════════════════════
-     MILESTONES — CocoRemedy timeline style
-     (single left-side vertical line, diamond dot,
-      bold date chip, title, marks + progress bar)
+     MILESTONES 
 ════════════════════════════════════ -->
-  <!-- MILESTONES -->
   <section id="milestones">
   <div class="container">
     <div class="section-header center">
@@ -2537,7 +2466,7 @@
   </section>
 
   <!-- ═══════════════════════════════════
-     ABOUT — photo-first card style (Dr. Janaka reference)
+     ABOUT 
 ════════════════════════════════════ -->
   <section id="about">
     <div class="container">
